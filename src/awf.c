@@ -1,8 +1,8 @@
 /**
  * Forked  M/10/03/2020
- * Updated D/25/10/2020
+ * Updated V/26/03/2021
  *
- * Copyright 2020 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
+ * Copyright 2020-2021 | Fabrice Creuzot (luigifab) <code~luigifab~fr>
  * https://github.com/luigifab/awf-extended
  * https://www.luigifab.fr/gtk/awf-extended
  *
@@ -31,22 +31,22 @@
  *  msgfmt src/po/fr.po -o src/fr/LC_MESSAGES/awf.mo
  *
  * Tested with build.sh with:
- * i386
- *  Ubuntu 11.04 (live/768  MB) GTK 3.0  + GTK 2.24 + GLIB 2.28
- *  Ubuntu 11.10 (live/768  MB) GTK 3.2  + GTK 2.24 + GLIB 2.30
- *  Ubuntu 12.04 (live/1024 MB) GTK 3.4  + GTK 2.24 + GLIB 2.32
- *  Ubuntu 13.04 (live/1024 MB) GTK 3.6  + GTK 2.24 + GLIB 2.36
- *  Ubuntu 13.10 (live/1024 MB) GTK 3.8  + GTK 2.24 + GLIB 2.38
- *  Ubuntu 14.04 (live/1024 MB) GTK 3.10 + GTK 2.24 + GLIB 2.40
- *  Ubuntu 14.10 (live/1024 MB) GTK 3.12 + GTK 2.24 + GLIB 2.42
- *  Ubuntu 15.04 (live/1024 MB) GTK 3.14 + GTK 2.24 + GLIB 2.44
- *  Ubuntu 15.10 (live/1024 MB) GTK 3.16 + GTK 2.24 + GLIB 2.46
- *  Ubuntu 16.04 (live/1272 MB) GTK 3.18 + GTK 2.24 + GLIB 2.48
- *  Ubuntu 16.10 (live/1272 MB) GTK 3.20 + GTK 2.24 + GLIB 2.50
- *  Ubuntu 17.04 (live/1272 MB) GTK 3.22 + GTK 2.24 + GLIB 2.52
- * amd64
- *  Debian Testing   GTK 3.99 + GTK 3.24 + GTK 2.24 + GLIB 2.66
- *  Fedora 32                   GTK 3.24 + GTK 2.24 + GLIB 2.64
+ *  Debian Testing 64  GTK 2.24/3.24 + GLIB 2.66 + Pango 1.42
+ * via VirtualBox 6.1
+ *  Fedora Rawhide 64            (1536 MB) GTK 2.24/3.24/4.1 + GLIB 2.67 + Pango 1.48
+ *  Debian Testing 64            (1536 MB) GTK 2.24/3.24/4.0 + GLIB 2.66 + Pango 1.48
+ *  Ubuntu 17.04 Zesty Zapus 32      (1272 MB) GTK 2.24/3.22 + GLIB 2.52 + Pango 1.40
+ *  Ubuntu 16.10 Yakkety Yak 32      (1272 MB) GTK 2.24/3.20 + GLIB 2.50 + Pango 1.40
+ *  Ubuntu 16.04 Xenial Xerus 32     (1272 MB) GTK 2.24/3.18 + GLIB 2.48 + Pango 1.38
+ *  Ubuntu 15.10 Wily Werewolf 32    (1024 MB) GTK 2.24/3.16 + GLIB 2.46 + Pango 1.36
+ *  Ubuntu 15.04 Vivid Vervet 32     (1024 MB) GTK 2.24/3.14 + GLIB 2.44 + Pango 1.36
+ *  Ubuntu 14.10 Utopic Unicorn 32   (1024 MB) GTK 2.24/3.12 + GLIB 2.42 + Pango 1.36
+ *  Ubuntu 14.04 Trusty Tahr 32      (1024 MB) GTK 2.24/3.10 + GLIB 2.40 + Pango 1.36
+ *  Ubuntu 13.10 Saucy Salamander 32 (1024 MB) GTK 2.24/3.8  + GLIB 2.38 + Pango 1.32
+ *  Ubuntu 13.04 Raring Ringtail 32  (1024 MB) GTK 2.24/3.6  + GLIB 2.36 + Pango 1.32
+ *  Ubuntu 12.04 Precise Pangolin 32 (1024 MB) GTK 2.24/3.4  + GLIB 2.32 + Pango 1.30
+ *  Ubuntu 11.10 Oneiric Ocelot 32    (768 MB) GTK 2.24/3.2  + GLIB 2.30 + Pango 1.29
+ *  Ubuntu 11.04 Natty Narwhal 32     (768 MB) GTK 2.24/3.0  + GLIB 2.28 + Pango 1.28
  */
 
 // includes
@@ -80,8 +80,7 @@
 #define AWF_CLOS "<AWF>/Test/Close"
 #define AWF_QUIT "<AWF>/Test/Quit"
 
-#if GTK_CHECK_VERSION (3,90,0)
-	#define TRUE_GTK_MAJOR_VERSION 4
+#if GTK_CHECK_VERSION (4,0,0)
 	#define GETTEXT_PACKAGE "awf-gtk4"
 	#define gtk_major_version gtk_get_major_version ()
 	#define gtk_minor_version gtk_get_minor_version ()
@@ -93,7 +92,6 @@
 	#define BOXHPANE (gtk_paned_new (GTK_ORIENTATION_HORIZONTAL))
 	#define BOXVPANE (gtk_paned_new (GTK_ORIENTATION_VERTICAL))
 #elif GTK_CHECK_VERSION (3,0,0)
-	#define TRUE_GTK_MAJOR_VERSION 3
 	#define GETTEXT_PACKAGE "awf-gtk3"
 	#define gtk_major_version gtk_get_major_version ()
 	#define gtk_minor_version gtk_get_minor_version ()
@@ -105,7 +103,6 @@
 	#define BOXHPANE (gtk_paned_new (GTK_ORIENTATION_HORIZONTAL))
 	#define BOXVPANE (gtk_paned_new (GTK_ORIENTATION_VERTICAL))
 #else
-	#define TRUE_GTK_MAJOR_VERSION 2
 	#define GETTEXT_PACKAGE "awf-gtk2"
 	#define BOXH (gtk_hbox_new (FALSE, 0))
 	#define BOXV (gtk_vbox_new (FALSE, 0))
@@ -179,7 +176,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2);
 static void awf2_create_notebook_tab (GtkWidget *notebook, char *text);
 static void awf2_create_treview (GtkWidget *root);
 // menuitems
-#if GTK_CHECK_VERSION (3,90,0)
+#if GTK_CHECK_VERSION (4,0,0)
 static void awf2_create_traditional_menubar (gpointer app, GMenu *root);
 #else
 static void awf2_create_traditional_menubar (GtkWidget *root);
@@ -206,14 +203,14 @@ static void awf2_show_dialog_print ();
 static void awf2_show_dialog_about ();
 static void awf2_show_dialog_calendar ();
 // gtk4/3
-#if GTK_CHECK_VERSION (3,90,0)
+#if GTK_CHECK_VERSION (4,0,0)
 static void awf2_gtk40_closedialog (GtkDialog *dialog);
 static void awf2_gtk40_scrolltabs (GtkEventControllerScroll *event, double dx, double dy, GtkWidget *widget);
 #elif GTK_CHECK_VERSION (3,4,0)
 static void awf2_gtk34_scrolltabs (GtkWidget *widget, GdkEventScroll *event);
 #endif
 
-// run baby, run!
+// run run run
 
 int main (int argc, char **argv) {
 
@@ -265,17 +262,19 @@ int main (int argc, char **argv) {
 			case 'h':
 			default:
 				g_printf ("\n%s\n %s\n %s\n\n%s\n  %s %s\n  %s %s\n  %s %s\n%s\n  %s %s\n  %s %s\n  %s %s\n  %s %s\n  %s %s\n",
-					g_strdup_printf (_("A widget factory - GTK %d - %s"), TRUE_GTK_MAJOR_VERSION, VERSION),
-					g_strdup_printf (_("compiled with gtk %d.%d.%d and glib %d.%d.%d"),
+					g_strdup_printf (_("A widget factory - GTK %d - %s"), GTK_MAJOR_VERSION, VERSION),
+					g_strdup_printf (_("compiled with gtk %d.%d.%d and glib %d.%d.%d and pango %s"),
 						GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION,
-						GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION),
-					g_strdup_printf (_(" started with gtk %d.%d.%d and glib %d.%d.%d"),
+						GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION,
+						PANGO_VERSION_STRING),
+					g_strdup_printf (_(" started with gtk %d.%d.%d and glib %d.%d.%d and pango %s"),
 						gtk_major_version, gtk_minor_version, gtk_micro_version,
-						glib_major_version, glib_minor_version, glib_micro_version),
+						glib_major_version, glib_minor_version, glib_micro_version,
+						pango_version_string ()),
 					_("Usage:"),
 					"awf-gtk2      ", "(gtk 2.24+)",
 					"awf-gtk3      ", "(gtk 3.00+)",
-					"awf-gtk4      ", "(gtk 3.99+)",
+					"awf-gtk4      ", "(gtk 4.00+)",
 					_("Options:"),
 					"-v            ", _("Show version number"),
 					"-l            ", _("List available themes"),
@@ -292,7 +291,7 @@ int main (int argc, char **argv) {
 		g_unix_signal_add (SIGHUP, awf2_sighup_handler, NULL); // glib >= 2.30
 	#endif
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		GtkApplication *app;
 		app = gtk_application_new ("org.gtk.awf4", G_APPLICATION_FLAGS_NONE);
 		g_signal_connect (app, "activate", G_CALLBACK (awf2_create_window), theme);
@@ -315,7 +314,7 @@ int main (int argc, char **argv) {
 
 static void awf2_quit () {
 
-	#if !GTK_CHECK_VERSION (3,90,0)
+	#if !GTK_CHECK_VERSION (4,0,0)
 		awf2_accels_save ();
 	#endif
 
@@ -340,7 +339,7 @@ static GSList* awf_load_theme (char *directory) {
 				char *theme_path = g_build_path ("/", directory, g_strstrip (theme), NULL);
 
 				if (g_file_test (theme_path, G_FILE_TEST_IS_DIR)) {
-					char *theme_subpath = g_build_path ("/", theme_path, g_strdup_printf ("gtk-%d.0", TRUE_GTK_MAJOR_VERSION), NULL);
+					char *theme_subpath = g_build_path ("/", theme_path, g_strdup_printf ("gtk-%d.0", GTK_MAJOR_VERSION), NULL);
 					if (g_file_test (theme_subpath, G_FILE_TEST_IS_DIR))
 						list = g_slist_prepend (list, theme);
 					g_free (theme_subpath);
@@ -416,7 +415,12 @@ static void awf2_set_theme (char *new_theme) {
 		g_object_set (gtk_settings_get_default (), "gtk-theme-name", new_theme,  NULL);
 		g_object_get (gtk_settings_get_default (), "gtk-theme-name", &current_theme, NULL);
 
-		gtk_window_resize (GTK_WINDOW (window), 50, 50);
+		#if GTK_CHECK_VERSION (4,0,0)
+			gtk_window_set_default_size (GTK_WINDOW (window), 50, 50);
+		#else
+			gtk_window_resize (GTK_WINDOW (window), 50, 50);
+		#endif
+
 		awf2_update_statusbar (g_strdup_printf (_("Theme %s loaded."), current_theme), FALSE);
 	}
 }
@@ -527,7 +531,11 @@ static void awf2_update_widgets () {
 		gtk_scale_clear_marks (GTK_SCALE (scale5));
 		gtk_scale_clear_marks (GTK_SCALE (scale6));
 
-		gtk_window_resize (GTK_WINDOW (window), 50, 50);
+		#if GTK_CHECK_VERSION (4,0,0)
+			gtk_window_set_default_size (GTK_WINDOW (window), 50, 50);
+		#else
+			gtk_window_resize (GTK_WINDOW (window), 50, 50);
+		#endif
 	}
 	else {
 		gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook1), TRUE);
@@ -588,7 +596,7 @@ static gboolean awf2_take_screenshot () {
 	int width, height;
 	// src/cairo-surface.c:1734: cairo_surface_mark_dirty_rectangle: assertion ! _cairo_surface_has_mime_data (surface) failed
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		GdkSurface *root;
 		cairo_surface_t *cairo_st;
 		root   = gtk_native_get_surface (gtk_widget_get_native (window));
@@ -643,20 +651,20 @@ static void awf2_create_window (gpointer app, char *theme) {
 		window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	#endif
 
-	gtk_window_set_title (GTK_WINDOW (window), g_strdup_printf (_("A widget factory - GTK %d - %s"), TRUE_GTK_MAJOR_VERSION, VERSION));
-	gtk_window_set_icon_name (GTK_WINDOW (window), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
+	gtk_window_set_title (GTK_WINDOW (window), g_strdup_printf (_("A widget factory - GTK %d - %s"), GTK_MAJOR_VERSION, VERSION));
+	gtk_window_set_icon_name (GTK_WINDOW (window), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
 	awf2_set_theme (theme);
 	allow_update_theme = FALSE;
 
 	// base layout
 	vbox_window = BOXV;
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_window_set_child (GTK_WINDOW (window), vbox_window);
 	#else
 		gtk_container_add (GTK_CONTAINER (window), vbox_window);
 	#endif
 
-		#if GTK_CHECK_VERSION (3,90,0)
+		#if GTK_CHECK_VERSION (4,0,0)
 			GMenu *gmm;
 			gmm = g_menu_new ();
 			awf2_create_traditional_menubar (app, gmm);
@@ -730,7 +738,7 @@ static void awf2_create_window (gpointer app, char *theme) {
 	// paned layout
 	awf2_boxpack (GTK_BOX (widgets), vpane, TRUE, TRUE, 0, 0);
 
-		#if GTK_CHECK_VERSION (3,90,0)
+		#if GTK_CHECK_VERSION (4,0,0)
 			gtk_paned_set_start_child (GTK_PANED (vpane), hpane1);
 		#else
 			gtk_paned_pack1 (GTK_PANED (vpane), hpane1, TRUE, FALSE);
@@ -748,8 +756,10 @@ static void awf2_create_window (gpointer app, char *theme) {
 				gtk_widget_set_size_request (hbox_frame1, -1, 70);
 				gtk_container_set_border_width (GTK_CONTAINER (hbox_frame1), 10);
 			#endif
-			#if GTK_CHECK_VERSION (3,90,0)
+			#if GTK_CHECK_VERSION (4,0,0)
 				gtk_paned_set_start_child (GTK_PANED (hpane1), hbox_frame1);
+				gtk_paned_set_resize_start_child (GTK_PANED (hpane1), FALSE);
+				gtk_paned_set_shrink_start_child (GTK_PANED (hpane1), FALSE);
 			#else
 				gtk_paned_add1 (GTK_PANED (hpane1), hbox_frame1);
 			#endif
@@ -766,7 +776,7 @@ static void awf2_create_window (gpointer app, char *theme) {
 				gtk_widget_set_size_request (hbox_frame2, -1, 70);
 				gtk_container_set_border_width (GTK_CONTAINER (hbox_frame2), 10);
 			#endif
-			#if GTK_CHECK_VERSION (3,90,0)
+			#if GTK_CHECK_VERSION (4,0,0)
 				gtk_paned_set_end_child (GTK_PANED (hpane1), hbox_frame2);
 			#else
 				gtk_paned_add2 (GTK_PANED (hpane1), hbox_frame2);
@@ -774,7 +784,7 @@ static void awf2_create_window (gpointer app, char *theme) {
 
 			awf2_create_frames (hbox_frame1, hbox_frame2);
 
-		#if GTK_CHECK_VERSION (3,90,0)
+		#if GTK_CHECK_VERSION (4,0,0)
 			gtk_paned_set_end_child (GTK_PANED (vpane), hpane2);
 		#else
 			gtk_paned_pack2 (GTK_PANED (vpane), hpane2, TRUE, FALSE);
@@ -790,8 +800,10 @@ static void awf2_create_window (gpointer app, char *theme) {
 			#else
 				gtk_container_set_border_width (GTK_CONTAINER (hbox_notebook1), 10);
 			#endif
-			#if GTK_CHECK_VERSION (3,90,0)
+			#if GTK_CHECK_VERSION (4,0,0)
 				gtk_paned_set_start_child (GTK_PANED (hpane2), hbox_notebook1);
+				gtk_paned_set_resize_start_child (GTK_PANED (hpane2), FALSE);
+				gtk_paned_set_shrink_start_child (GTK_PANED (hpane2), FALSE);
 			#else
 				gtk_paned_add1 (GTK_PANED (hpane2), hbox_notebook1);
 			#endif
@@ -806,7 +818,7 @@ static void awf2_create_window (gpointer app, char *theme) {
 			#else
 				gtk_container_set_border_width (GTK_CONTAINER (hbox_notebook2), 10);
 			#endif
-			#if GTK_CHECK_VERSION (3,90,0)
+			#if GTK_CHECK_VERSION (4,0,0)
 				gtk_paned_set_end_child (GTK_PANED (hpane2), hbox_notebook2);
 			#else
 				gtk_paned_add2 (GTK_PANED (hpane2), hbox_notebook2);
@@ -819,8 +831,8 @@ static void awf2_create_window (gpointer app, char *theme) {
 	// go
 	g_signal_connect (window, "destroy", G_CALLBACK (awf2_quit), NULL);
 
-	#if GTK_CHECK_VERSION (3,90,0)
-		gtk_style_context_add_class (gtk_widget_get_style_context (toolbar), "primary-toolbar-gtk4");
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_style_context_add_class (gtk_widget_get_style_context (toolbar), "primary-toolbar");
 		gtk_widget_show (window);
 	#elif GTK_CHECK_VERSION (3,4,0)
 		gtk_style_context_add_class (gtk_widget_get_style_context (toolbar), "primary-toolbar");
@@ -837,19 +849,28 @@ static void awf2_create_window (gpointer app, char *theme) {
 
 static void awf2_boxpack (GtkBox *box, GtkWidget *widget, gboolean fill, gboolean expand, guint padding, guint spacing) {
 
-	// https://developer.gnome.org/gtk3/stable/GtkBox.html
-	// https://developer.gnome.org/gtk4/stable/GtkBox.html
+	#if GTK_CHECK_VERSION (4,0,0)
 
-	#if GTK_CHECK_VERSION (3,90,0)
-		if (fill) {
+		// https://developer.gnome.org/gtk4/stable/GtkBox.html
+		// https://developer.gnome.org/gtk4/stable/GtkWidget.html
+
+		if (fill && expand) {
 			gtk_widget_set_halign (widget, GTK_ALIGN_FILL);
 			gtk_widget_set_valign (widget, GTK_ALIGN_FILL);
-		}
-		if (expand) {
 			gtk_widget_set_hexpand (widget, TRUE);
 			gtk_widget_set_vexpand (widget, TRUE);
 		}
-		if (GTK_IS_BOX (widget) && (padding > 0)) { // todo
+		else if (fill) {
+			gtk_widget_set_halign (widget, GTK_ALIGN_FILL);
+			gtk_widget_set_valign (widget, GTK_ALIGN_START);
+			gtk_widget_set_hexpand (widget, FALSE);
+			gtk_widget_set_vexpand (widget, FALSE);
+		}
+		else {
+			gtk_widget_set_hexpand (widget, FALSE);
+			gtk_widget_set_vexpand (widget, FALSE);
+		}
+		if (GTK_IS_BOX (widget) && (padding > 0)) {
 			gtk_widget_set_margin_start (widget, padding);
 			gtk_widget_set_margin_end (widget, padding);
 			gtk_widget_set_margin_top (widget, padding);
@@ -860,6 +881,9 @@ static void awf2_boxpack (GtkBox *box, GtkWidget *widget, gboolean fill, gboolea
 		}
 		gtk_box_append (box, widget);
 	#else
+		// https://developer.gnome.org/gtk3/stable/GtkBox.html
+		// https://developer.gnome.org/gtk3/stable/GtkWidget.html
+
 		if (GTK_IS_INFO_BAR (box))
 			box = GTK_BOX (gtk_info_bar_get_content_area (GTK_INFO_BAR (box)));
 		if (GTK_IS_CONTAINER (widget) && (padding > 0))
@@ -872,12 +896,12 @@ static void awf2_boxpack (GtkBox *box, GtkWidget *widget, gboolean fill, gboolea
 
 static void awf2_create_toolbar (GtkWidget *root) {
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 
 		// https://developer.gnome.org/gtk4/stable/GtkButton.html
 		// https://developer.gnome.org/gtk4/stable/GtkToggleButton.html
 
-		GtkWidget *icon1, *icon2, *icon3, *icon4, *icon5, *icon6, *icon7, *menu;
+		GtkWidget *icon1, *icon2, *icon3, *icon4, *icon5, *icon6, *icon7;
 
 		icon1 = gtk_button_new_from_icon_name ("gtk-open");
 		gtk_widget_set_size_request (icon1, 36, 36);
@@ -990,12 +1014,11 @@ static void awf2_create_toolbar (GtkWidget *root) {
 
 static void awf2_create_combos_entries (GtkWidget *root) {
 
-	// https://developer.gnome.org/gtk3/stable/GtkComboBoxText.html
-	// https://developer.gnome.org/gtk3/stable/GtkComboBox.html
-	// https://developer.gnome.org/gtk3/stable/GtkEntry.html
-	// https://developer.gnome.org/gtk4/stable/GtkEditable.html
-
 	GtkWidget *combo1, *combo2, *combo3, *combo4, *entry1, *entry2, *entry3, *entry4;
+
+	// 1 + 2 + 3 + 4
+	// https://developer.gnome.org/gtk3/stable/GtkComboBox.html
+	// https://developer.gnome.org/gtk3/stable/GtkComboBoxText.html
 
 	combo1 = gtk_combo_box_text_new_with_entry ();
 	gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (combo1), "Combo box entry 1");
@@ -1019,15 +1042,23 @@ static void awf2_create_combos_entries (GtkWidget *root) {
 	gtk_combo_box_set_active (GTK_COMBO_BOX (combo4), 0);
 	gtk_widget_set_sensitive (combo4, FALSE);
 
+	// 1 + 2 + 3 + 4
+	// https://developer.gnome.org/gtk3/stable/GtkEntry.html
+	// https://developer.gnome.org/gtk4/stable/GtkEditable.html
+
 	entry1 = gtk_entry_new ();
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_entry_set_placeholder_text (GTK_ENTRY (entry1), "Placeholder");
 		gtk_editable_set_text (GTK_EDITABLE (entry1), "Entry");
+	#elif GTK_CHECK_VERSION (3,2,0)
+		gtk_entry_set_text (GTK_ENTRY (entry1), "Entry");
+		gtk_entry_set_placeholder_text (GTK_ENTRY (entry1), "Placeholder");
 	#else
 		gtk_entry_set_text (GTK_ENTRY (entry1), "Entry");
 	#endif
 
 	entry2 = gtk_entry_new ();
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_editable_set_text (GTK_EDITABLE (entry2), "Entry (disabled)");
 	#else
 		gtk_entry_set_text (GTK_ENTRY (entry2), "Entry (disabled)");
@@ -1035,8 +1066,12 @@ static void awf2_create_combos_entries (GtkWidget *root) {
 	gtk_widget_set_sensitive (entry2, FALSE);
 
 	entry3 = gtk_entry_new ();
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_entry_set_placeholder_text (GTK_ENTRY (entry3), "Placeholder");
 		gtk_editable_set_text (GTK_EDITABLE (entry3), "Entry");
+	#elif GTK_CHECK_VERSION (3,2,0)
+		gtk_entry_set_text (GTK_ENTRY (entry3), "Entry");
+		gtk_entry_set_placeholder_text (GTK_ENTRY (entry3), "Placeholder");
 	#else
 		gtk_entry_set_text (GTK_ENTRY (entry3), "Entry");
 	#endif
@@ -1046,7 +1081,7 @@ static void awf2_create_combos_entries (GtkWidget *root) {
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry3), GTK_ENTRY_ICON_SECONDARY, "gtk-find");
 
 	entry4 = gtk_entry_new ();
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_editable_set_text (GTK_EDITABLE (entry4), "Entry (disabled)");
 	#else
 		gtk_entry_set_text (GTK_ENTRY (entry4), "Entry (disabled)");
@@ -1056,11 +1091,6 @@ static void awf2_create_combos_entries (GtkWidget *root) {
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry4), GTK_ENTRY_ICON_PRIMARY, "gtk-clear");
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry4), GTK_ENTRY_ICON_SECONDARY, "gtk-find");
 	gtk_widget_set_sensitive (entry4, FALSE);
-
-	#if GTK_CHECK_VERSION (3,2,0)
-		gtk_entry_set_placeholder_text (GTK_ENTRY (entry1), "Placeholder");
-		gtk_entry_set_placeholder_text (GTK_ENTRY (entry3), "Placeholder");
-	#endif
 
 	awf2_boxpack (GTK_BOX (root), combo1, FALSE, FALSE, 0, 0);
 	awf2_boxpack (GTK_BOX (root), combo2, FALSE, FALSE, 0, 0);
@@ -1094,35 +1124,50 @@ static void awf2_create_spinbuttons (GtkWidget *root) {
 static void awf2_create_checkbuttons (GtkWidget *root) {
 
 	// https://developer.gnome.org/gtk3/stable/GtkCheckButton.html
+	// https://developer.gnome.org/gtk4/stable/GtkCheckButton.html
 
 	GtkWidget *checkbutton1, *checkbutton2, *checkbutton3, *checkbutton4, *checkbutton5, *checkbutton6;
 
-	checkbutton1 = gtk_check_button_new_with_label ("Check button 1");
+	#if GTK_CHECK_VERSION (4,0,0)
 
-	checkbutton2 = gtk_check_button_new_with_label ("Check button 2");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (checkbutton2), TRUE);
+		checkbutton1 = gtk_check_button_new_with_label ("Check button 1");
 
-	checkbutton3 = gtk_check_button_new_with_label ("Check button 3");
-	#if GTK_CHECK_VERSION (3,90,0)
+		checkbutton2 = gtk_check_button_new_with_label ("Check button 2");
+		gtk_check_button_set_active (GTK_CHECK_BUTTON (checkbutton2), TRUE);
+
+		checkbutton3 = gtk_check_button_new_with_label ("Check button 3");
 		gtk_check_button_set_inconsistent (GTK_CHECK_BUTTON (checkbutton3), TRUE);
-	#else
-		gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (checkbutton3), TRUE);
-	#endif
 
-	checkbutton4 = gtk_check_button_new_with_label ("Check button 4");
-	gtk_widget_set_sensitive (checkbutton4, FALSE);
+		checkbutton4 = gtk_check_button_new_with_label ("Check button 4");
+		gtk_widget_set_sensitive (checkbutton4, FALSE);
 
-	checkbutton5 = gtk_check_button_new_with_label ("Check button 5");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (checkbutton5), TRUE);
-	gtk_widget_set_sensitive (checkbutton5, FALSE);
+		checkbutton5 = gtk_check_button_new_with_label ("Check button 5");
+		gtk_check_button_set_active (GTK_CHECK_BUTTON (checkbutton5), TRUE);
+		gtk_widget_set_sensitive (checkbutton5, FALSE);
 
-	checkbutton6 = gtk_check_button_new_with_label ("Check button 6");
-	#if GTK_CHECK_VERSION (3,90,0)
+		checkbutton6 = gtk_check_button_new_with_label ("Check button 6");
 		gtk_check_button_set_inconsistent (GTK_CHECK_BUTTON (checkbutton6), TRUE);
+		gtk_widget_set_sensitive (checkbutton6, FALSE);
 	#else
+		checkbutton1 = gtk_check_button_new_with_label ("Check button 1");
+
+		checkbutton2 = gtk_check_button_new_with_label ("Check button 2");
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (checkbutton2), TRUE);
+
+		checkbutton3 = gtk_check_button_new_with_label ("Check button 3");
+		gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (checkbutton3), TRUE);
+
+		checkbutton4 = gtk_check_button_new_with_label ("Check button 4");
+		gtk_widget_set_sensitive (checkbutton4, FALSE);
+
+		checkbutton5 = gtk_check_button_new_with_label ("Check button 5");
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (checkbutton5), TRUE);
+		gtk_widget_set_sensitive (checkbutton5, FALSE);
+
+		checkbutton6 = gtk_check_button_new_with_label ("Check button 6");
 		gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (checkbutton6), TRUE);
+		gtk_widget_set_sensitive (checkbutton6, FALSE);
 	#endif
-	gtk_widget_set_sensitive (checkbutton6, FALSE);
 
 	awf2_boxpack (GTK_BOX (root), checkbutton1, FALSE, FALSE, 0, 0);
 	awf2_boxpack (GTK_BOX (root), checkbutton2, FALSE, FALSE, 0, 0);
@@ -1135,41 +1180,63 @@ static void awf2_create_checkbuttons (GtkWidget *root) {
 static void awf2_create_radiobuttons (GtkWidget *root) {
 
 	// https://developer.gnome.org/gtk3/stable/GtkRadioButton.html
+	// https://developer.gnome.org/gtk4/stable/GtkCheckButton.html
 
-	GtkWidget *radio1, *radio2, *radio3, *radio4;
 	GtkWidget *radiobutton1, *radiobutton2, *radiobutton3, *radiobutton4, *radiobutton5, *radiobutton6;
 
-	radio1 = gtk_radio_button_new (NULL);
-	radio2 = gtk_radio_button_new (NULL);
-	radio3 = gtk_radio_button_new (NULL);
-	radio4 = gtk_radio_button_new (NULL);
+	#if GTK_CHECK_VERSION (4,0,0)
 
-	radiobutton1 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio1), "Radio button 1");
+		radiobutton1 = gtk_check_button_new_with_label ("Radio button 1");
+		gtk_check_button_set_group (GTK_CHECK_BUTTON (radiobutton1), NULL);
 
-	radiobutton2 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio1), "Radio button 2");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton2), TRUE);
+		radiobutton2 = gtk_check_button_new_with_label ("Radio button 2");
+		gtk_check_button_set_group (GTK_CHECK_BUTTON (radiobutton2), GTK_CHECK_BUTTON (radiobutton1));
+		gtk_check_button_set_active (GTK_CHECK_BUTTON (radiobutton2), TRUE);
 
-	radiobutton3 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio2), "Radio button 3");
-	#if GTK_CHECK_VERSION (3,90,0)
+		radiobutton3 = gtk_check_button_new_with_label ("Radio button 3");
+		gtk_check_button_set_group (GTK_CHECK_BUTTON (radiobutton3), GTK_CHECK_BUTTON (radiobutton1));
 		gtk_check_button_set_inconsistent (GTK_CHECK_BUTTON (radiobutton3), TRUE);
-	#else
-		gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (radiobutton3), TRUE);
-	#endif
 
-	radiobutton4 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio3), "Radio button 4");
-	gtk_widget_set_sensitive (radiobutton4, FALSE);
+		radiobutton4 = gtk_check_button_new_with_label ("Radio button 4");
+		gtk_check_button_set_group (GTK_CHECK_BUTTON (radiobutton4), NULL);
+		gtk_widget_set_sensitive (radiobutton4, FALSE);
 
-	radiobutton5 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio3), "Radio button 5");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton5), TRUE);
-	gtk_widget_set_sensitive (radiobutton5, FALSE);
+		radiobutton5 = gtk_check_button_new_with_label ("Radio button 5");
+		gtk_check_button_set_group (GTK_CHECK_BUTTON (radiobutton5), GTK_CHECK_BUTTON (radiobutton4));
+		gtk_check_button_set_active (GTK_CHECK_BUTTON (radiobutton5), TRUE);
+		gtk_widget_set_sensitive (radiobutton5, FALSE);
 
-	radiobutton6 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio4), "Radio button 6");
-	#if GTK_CHECK_VERSION (3,90,0)
+		radiobutton6 = gtk_check_button_new_with_label ("Radio button 6");
+		gtk_check_button_set_group (GTK_CHECK_BUTTON (radiobutton6), GTK_CHECK_BUTTON (radiobutton4));
 		gtk_check_button_set_inconsistent (GTK_CHECK_BUTTON (radiobutton6), TRUE);
+		gtk_widget_set_sensitive (radiobutton6, FALSE);
 	#else
+		GtkWidget *radio1, *radio2, *radio3, *radio4;
+
+		radio1 = gtk_radio_button_new (NULL);
+		radio2 = gtk_radio_button_new (NULL);
+		radio3 = gtk_radio_button_new (NULL);
+		radio4 = gtk_radio_button_new (NULL);
+
+		radiobutton1 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio1), "Radio button 1");
+
+		radiobutton2 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio1), "Radio button 2");
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton2), TRUE);
+
+		radiobutton3 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio2), "Radio button 3");
+		gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (radiobutton3), TRUE);
+
+		radiobutton4 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio3), "Radio button 4");
+		gtk_widget_set_sensitive (radiobutton4, FALSE);
+
+		radiobutton5 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio3), "Radio button 5");
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (radiobutton5), TRUE);
+		gtk_widget_set_sensitive (radiobutton5, FALSE);
+
+		radiobutton6 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (radio4), "Radio button 6");
 		gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (radiobutton6), TRUE);
+		gtk_widget_set_sensitive (radiobutton6, FALSE);
 	#endif
-	gtk_widget_set_sensitive (radiobutton6, FALSE);
 
 	awf2_boxpack (GTK_BOX (root), radiobutton1, FALSE, FALSE, 0, 0);
 	awf2_boxpack (GTK_BOX (root), radiobutton2, FALSE, FALSE, 0, 0);
@@ -1181,12 +1248,10 @@ static void awf2_create_radiobuttons (GtkWidget *root) {
 
 static void awf2_create_otherbuttons (GtkWidget *root) {
 
-	const char *scale_icons[] = { g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION), NULL };
+	const char *scale_icons[] = { g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION), NULL };
 	GtkWidget *button1, *button2, *button3, *button4, *button5, *button6, *button7, *button8, *button9, *button10, *button11, *button12;
-	#if !GTK_CHECK_VERSION (3,0,0)
-		GtkWidget *combomenu1, *combomenu2;
-	#endif
 
+	// 1 + 2
 	// https://developer.gnome.org/gtk3/stable/GtkButton.html
 
 	button1 = gtk_button_new_with_label ("Button 1");
@@ -1194,6 +1259,7 @@ static void awf2_create_otherbuttons (GtkWidget *root) {
 	button2 = gtk_button_new_with_label ("Button 2");
 	gtk_widget_set_sensitive (button2, FALSE);
 
+	// 3 + 4
 	// https://developer.gnome.org/gtk3/stable/GtkToggleButton.html
 
 	button3 = gtk_toggle_button_new_with_label ("Toggle button 1");
@@ -1202,6 +1268,7 @@ static void awf2_create_otherbuttons (GtkWidget *root) {
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button3), TRUE);
 	gtk_widget_set_sensitive (button4, FALSE);
 
+	// 5
 	// https://developer.gnome.org/gtk3/stable/GtkColorButton.html
 
 	#if GTK_CHECK_VERSION (3,0,0)
@@ -1214,12 +1281,27 @@ static void awf2_create_otherbuttons (GtkWidget *root) {
 		button5 = gtk_color_button_new_with_color (&color);
 	#endif
 
+	// 6
+	// https://developer.gnome.org/gtk3/stable/GtkFontButton.html
+
 	button6 = gtk_font_button_new ();
 	gtk_widget_set_size_request (button5, 175, -1);
 
-	button7 = gtk_file_chooser_button_new ("GtkFileChooserDialog", GTK_FILE_CHOOSER_ACTION_OPEN);
+	// 7 + 8
+	// https://developer.gnome.org/gtk3/stable/GtkFileChooserButton.html
+	// https://developer.gnome.org/gtk4/stable/ch41s02.html#id-1.7.4.4.85
 
-	button8 = gtk_file_chooser_button_new ("GtkFileChooserDialog", GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
+	#if GTK_CHECK_VERSION (4,0,0)
+		button7 = gtk_button_new_with_label ("Button 7");
+		button8 = gtk_button_new_with_label ("Button 8");
+	#else
+		button7 = gtk_file_chooser_button_new ("GtkFileChooserDialog", GTK_FILE_CHOOSER_ACTION_OPEN);
+		button8 = gtk_file_chooser_button_new ("GtkFileChooserDialog", GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
+	#endif
+
+	// 9 + 10
+	// https://developer.gnome.org/gtk2/stable/GtkOptionMenu.html
+	// https://developer.gnome.org/gtk3/stable/GtkSwitch.html
 
 	#if GTK_CHECK_VERSION (3,0,0)
 		button9 = gtk_switch_new ();
@@ -1229,6 +1311,8 @@ static void awf2_create_otherbuttons (GtkWidget *root) {
 		gtk_switch_set_active (GTK_SWITCH (button10), FALSE);
 		gtk_widget_set_sensitive (button10, FALSE);
 	#else
+		GtkWidget *combomenu1, *combomenu2;
+
 		combomenu1 = gtk_menu_new ();
 		gtk_menu_shell_append (GTK_MENU_SHELL (combomenu1), gtk_menu_item_new_with_label ("Option 1"));
 		gtk_menu_shell_append (GTK_MENU_SHELL (combomenu1), gtk_menu_item_new_with_label ("Option 2"));
@@ -1247,11 +1331,16 @@ static void awf2_create_otherbuttons (GtkWidget *root) {
 		gtk_widget_set_sensitive (button10, FALSE);
 	#endif
 
+	// 11
+	// https://developer.gnome.org/gtk3/stable/GtkLinkButton.html
+
 	button11 = gtk_link_button_new_with_label ("https://github.com/luigifab/awf-extended", "Link button");
 
+	// 12
 	// https://developer.gnome.org/gtk3/stable/GtkScaleButton.html
+	// https://developer.gnome.org/gtk4/stable/GtkScaleButton.html
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		button12 = gtk_scale_button_new (1, 10, 1, scale_icons);
 	#else
 		button12 = gtk_scale_button_new (GTK_ICON_SIZE_BUTTON, 1, 10, 1, scale_icons);
@@ -1572,21 +1661,26 @@ static void awf2_create_expander (GtkWidget *root) {
 	// https://developer.gnome.org/gtk3/stable/GtkExpander.html
 	// https://developer.gnome.org/gtk3/stable/GtkScrolledWindow.html
 	// https://developer.gnome.org/gtk3/stable/GtkTextView.html
+	// https://developer.gnome.org/gtk4/stable/GtkExpander.html
+	// https://developer.gnome.org/gtk4/stable/GtkScrolledWindow.html
 
 	GtkWidget *expander, *scrolled_window, *tv;
 	GtkTextBuffer *buffer;
 
 	expander = gtk_expander_new (_("More..."));
-	//#if GTK_CHECK_VERSION (3,20,0)
-	//	set label width to 100% impossible?
+	gtk_expander_set_expanded (GTK_EXPANDER (expander), TRUE);
+	//#if GTK_CHECK_VERSION (3,20,0) && !GTK_CHECK_VERSION (4,0,0)
+	//	how to set label width to 100%
 	//#endif
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		scrolled_window = gtk_scrolled_window_new ();
+		gtk_scrolled_window_set_overlay_scrolling (GTK_SCROLLED_WINDOW (scrolled_window), FALSE);
 	#else
 		scrolled_window = gtk_scrolled_window_new (NULL, NULL);
 		gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
 	#endif
+
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 	gtk_widget_set_size_request (scrolled_window, -1, 120);
 
@@ -1595,65 +1689,67 @@ static void awf2_create_expander (GtkWidget *root) {
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (tv), GTK_WRAP_WORD);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), g_strdup_printf ("%s ~ %s", _("A widget factory is a theme preview application for GTK. It displays the various widget types provided by GTK in a single window allowing to see the visual effect of the applied theme."), _("A widget factory is a theme preview application for GTK. It displays the various widget types provided by GTK in a single window allowing to see the visual effect of the applied theme.")), -1);
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), tv);
 		gtk_expander_set_child (GTK_EXPANDER (expander), scrolled_window);
 	#else
 		gtk_container_add (GTK_CONTAINER (scrolled_window), tv);
 		gtk_container_add (GTK_CONTAINER (expander), scrolled_window);
 	#endif
+
 	awf2_boxpack (GTK_BOX (root), expander, FALSE, FALSE, 0, 0);
 }
 
 static void awf2_create_frames (GtkWidget *root1, GtkWidget *root2) {
 
 	// https://developer.gnome.org/gtk3/stable/GtkFrame.html
+	// https://developer.gnome.org/gtk4/stable/GtkFrame.html
 
 	GtkWidget *frame1, *frame2, *frame3, *frame4;
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		frame1 = gtk_frame_new ("Frame (shadow in)");
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame1), "border-inset");
 	#elif GTK_CHECK_VERSION (3,0,0)
 		frame1 = gtk_frame_new ("Frame (shadow in)");
-		gtk_frame_set_shadow_type (GTK_FRAME (frame1), GTK_SHADOW_IN);
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame1), "border-inset");
+		gtk_frame_set_shadow_type (GTK_FRAME (frame1), GTK_SHADOW_IN);
 	#else
 		frame1 = gtk_frame_new ("Frame (shadow in)");
 		gtk_frame_set_shadow_type (GTK_FRAME (frame1), GTK_SHADOW_IN);
 	#endif
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		frame2 = gtk_frame_new ("Frame (shadow out)");
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame2), "border-outset");
 	#elif GTK_CHECK_VERSION (3,0,0)
 		frame2 = gtk_frame_new ("Frame (shadow out)");
-		gtk_frame_set_shadow_type (GTK_FRAME (frame2), GTK_SHADOW_OUT);
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame2), "border-outset");
+		gtk_frame_set_shadow_type (GTK_FRAME (frame2), GTK_SHADOW_OUT);
 	#else
 		frame2 = gtk_frame_new ("Frame (shadow out)");
 		gtk_frame_set_shadow_type (GTK_FRAME (frame2), GTK_SHADOW_OUT);
 	#endif
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		frame3 = gtk_frame_new ("Frame (shadow etched in)");
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame3), "border-groove");
 	#elif GTK_CHECK_VERSION (3,0,0)
 		frame3 = gtk_frame_new ("Frame (shadow etched in)");
-		gtk_frame_set_shadow_type (GTK_FRAME (frame3), GTK_SHADOW_ETCHED_IN);
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame3), "border-groove");
+		gtk_frame_set_shadow_type (GTK_FRAME (frame3), GTK_SHADOW_ETCHED_IN);
 	#else
 		frame3 = gtk_frame_new ("Frame (shadow etched in)");
 		gtk_frame_set_shadow_type (GTK_FRAME (frame3), GTK_SHADOW_ETCHED_IN);
 	#endif
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		frame4 = gtk_frame_new ("Frame (shadow etched out)");
 		gtk_style_context_add_class (gtk_widget_get_style_context (frame4), "border-ridge");
 	#elif GTK_CHECK_VERSION (3,0,0)
 		frame4 = gtk_frame_new ("Frame (shadow etched out)");
+		gtk_style_context_add_class (gtk_widget_get_style_context (frame4), "border-ridge");
 		gtk_frame_set_shadow_type (GTK_FRAME (frame4), GTK_SHADOW_ETCHED_OUT);
-		gtk_style_context_add_class (gtk_widget_get_style_context (frame4), "border-ridge");
 	#else
 		frame4 = gtk_frame_new ("Frame (shadow etched out)");
 		gtk_frame_set_shadow_type (GTK_FRAME (frame4), GTK_SHADOW_ETCHED_OUT);
@@ -1675,33 +1771,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2) {
 	notebook3 = gtk_notebook_new ();
 	notebook4 = gtk_notebook_new ();
 
-	#if GTK_CHECK_VERSION (3,90,0)
-	// this does not work, because scroll is possible from content
-	//	GtkEventController *event1, *event2, *event3, *event4;
-	//	event1 = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES | GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
-	//	g_signal_connect (event1, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook1);
-	//	gtk_widget_add_controller (notebook1, event1);
-	//	event2 = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	//	g_signal_connect (event2, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook2);
-	//	gtk_widget_add_controller (notebook2, event2);
-	//	event3 = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	//	g_signal_connect (event3, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook3);
-	//	gtk_widget_add_controller (notebook3, event3);
-	//	event4 = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	//	g_signal_connect (event4, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook4);
-	//	gtk_widget_add_controller (notebook4, event4);
-	//elif GTK_CHECK_VERSION (3,24,0)
-	// this works but there is a delay (first scroll is ignored)
-	//	GtkEventController *event1, *event2, *event3, *event4;
-	//	event1 = gtk_event_controller_scroll_new (notebook1, GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES | GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
-	//	g_signal_connect (event1, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook1);
-	//	event2 = gtk_event_controller_scroll_new (notebook2, GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	//	g_signal_connect (event2, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook2);
-	//	event3 = gtk_event_controller_scroll_new (notebook3, GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	//	g_signal_connect (event3, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook3);
-	//	event4 = gtk_event_controller_scroll_new (notebook4, GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	//	g_signal_connect (event4, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook4);
-	#elif GTK_CHECK_VERSION (3,4,0)
+	#if GTK_CHECK_VERSION (3,4,0) && !GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_add_events (notebook1, GDK_SCROLL_MASK);
 		g_signal_connect (notebook1, "scroll-event", G_CALLBACK (awf2_gtk34_scrolltabs), NULL);
 		gtk_widget_add_events (notebook2, GDK_SCROLL_MASK);
@@ -1717,7 +1787,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2) {
 	gtk_notebook_set_tab_pos (GTK_NOTEBOOK (notebook1), GTK_POS_TOP);
 		awf2_create_notebook_tab (notebook1, "tab1");
 		awf2_create_notebook_tab (notebook1, "tab2");
-		awf2_create_notebook_tab (notebook1, "tab3");
+		awf2_create_notebook_tab (notebook1, "tab3!");
 		awf2_create_notebook_tab (notebook1, "tab4");
 
 	gtk_notebook_popup_enable (GTK_NOTEBOOK (notebook2));
@@ -1725,7 +1795,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2) {
 	gtk_notebook_set_tab_pos (GTK_NOTEBOOK (notebook2), GTK_POS_BOTTOM);
 		awf2_create_notebook_tab (notebook2, "tab1");
 		awf2_create_notebook_tab (notebook2, "tab2");
-		awf2_create_notebook_tab (notebook2, "tab3");
+		awf2_create_notebook_tab (notebook2, "tab3!");
 		awf2_create_notebook_tab (notebook2, "tab4");
 
 	gtk_notebook_popup_enable (GTK_NOTEBOOK (notebook3));
@@ -1733,7 +1803,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2) {
 	gtk_notebook_set_tab_pos (GTK_NOTEBOOK (notebook3), GTK_POS_LEFT);
 		awf2_create_notebook_tab (notebook3, "tab1");
 		awf2_create_notebook_tab (notebook3, "tab2");
-		awf2_create_notebook_tab (notebook3, "tab3");
+		awf2_create_notebook_tab (notebook3, "tab3!");
 		awf2_create_notebook_tab (notebook3, "tab4");
 
 	gtk_notebook_popup_enable (GTK_NOTEBOOK (notebook4));
@@ -1741,7 +1811,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2) {
 	gtk_notebook_set_tab_pos (GTK_NOTEBOOK (notebook4), GTK_POS_RIGHT);
 		awf2_create_notebook_tab (notebook4, "tab1");
 		awf2_create_notebook_tab (notebook4, "tab2");
-		awf2_create_notebook_tab (notebook4, "tab3");
+		awf2_create_notebook_tab (notebook4, "tab3!");
 		awf2_create_notebook_tab (notebook4, "tab4");
 
 	awf2_boxpack (GTK_BOX (root1), notebook1, TRUE, TRUE, 0, 0);
@@ -1753,7 +1823,7 @@ static void awf2_create_notebooks (GtkWidget *root1, GtkWidget *root2) {
 static void awf2_create_notebook_tab (GtkWidget *notebook, char *text) {
 
 	// https://developer.gnome.org/gtk3/stable/GtkNotebook.html
-	// https://developer.gnome.org/gtk3/stable/GtkEventControllerScroll.html
+	// https://developer.gnome.org/gtk4/stable/GtkEventControllerScroll.html
 
 	GtkWidget *head, *content;
 
@@ -1763,8 +1833,7 @@ static void awf2_create_notebook_tab (GtkWidget *notebook, char *text) {
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), content, head);
 	gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (notebook), content, TRUE);
 
-	#if GTK_CHECK_VERSION (3,90,0)
-		// this works but there is a delay (first scroll is ignored)
+	#if GTK_CHECK_VERSION (4,0,0)
 		GtkEventController *event;
 		event = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES | GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
 		g_signal_connect (event, "scroll", G_CALLBACK (awf2_gtk40_scrolltabs), notebook);
@@ -1773,6 +1842,10 @@ static void awf2_create_notebook_tab (GtkWidget *notebook, char *text) {
 }
 
 static void awf2_create_treview (GtkWidget *root) {
+
+	// https://developer.gnome.org/gtk3/stable/GtkTreeView.html
+	// https://developer.gnome.org/gtk3/stable/GtkScrolledWindow.html
+	// https://developer.gnome.org/gtk4/stable/GtkScrolledWindow.html
 
 	GtkWidget *scrolled_window, *view;
 	GtkCellRenderer *renderer;
@@ -1802,26 +1875,29 @@ static void awf2_create_treview (GtkWidget *root) {
 	model = GTK_TREE_MODEL (store);
 	gtk_tree_view_set_model (GTK_TREE_VIEW (view), model);
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		scrolled_window = gtk_scrolled_window_new ();
+		gtk_scrolled_window_set_overlay_scrolling (GTK_SCROLLED_WINDOW (scrolled_window), FALSE);
 	#else
 		scrolled_window = gtk_scrolled_window_new (NULL, NULL);
 		gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
 	#endif
+
 	gtk_widget_set_size_request (scrolled_window, 200, 200);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_ALWAYS, GTK_POLICY_ALWAYS);
 
-	#if GTK_CHECK_VERSION (3,90,0)
-		awf2_boxpack (GTK_BOX (scrolled_window), view, FALSE, FALSE, 0, 0);
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), view);
 	#else
 		gtk_container_add (GTK_CONTAINER (scrolled_window), view);
 	#endif
+
 	awf2_boxpack (GTK_BOX (root), scrolled_window, FALSE, FALSE, 0, 0);
 }
 
 // menuitems
 
-#if GTK_CHECK_VERSION (3,90,0)
+#if GTK_CHECK_VERSION (4,0,0)
 
 static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 
@@ -1873,7 +1949,7 @@ static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 	menu = g_menu_new ();
 	g_menu_append_submenu (root, _("_Options"), G_MENU_MODEL (menu));
 
-		menuitem = g_menu_item_new (_("gtk-open"), NULL);
+		menuitem = g_menu_item_new (("gtk-open"), NULL);
 		g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>O", NULL);
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_open), AWF_OPEN
@@ -1886,7 +1962,7 @@ static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_calendar), AWF_CALE
 
-		menuitem = g_menu_item_new (_("gtk-save"), NULL);
+		menuitem = g_menu_item_new (("gtk-save"), NULL);
 		g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>S", NULL);
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_save), AWF_SAVE
@@ -1896,16 +1972,16 @@ static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 		g_menu_append_item (menu, menuitem);
 		// (G_CALLBACK (awf2_set_theme), "refresh"), AWF_REFR
 
-		menuitem = g_menu_item_new (_("gtk-properties"), NULL);
+		menuitem = g_menu_item_new (("gtk-properties"), NULL);
 		g_menu_item_set_attribute (menuitem, "accel", "s", "<Alt>Return", NULL);
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_properties), AWF_PROP
 
-		menuitem = g_menu_item_new (_("gtk-page-setup"), NULL);
+		menuitem = g_menu_item_new (("gtk-page-setup"), NULL);
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_page_setup), AWF_PRSE
 
-		menuitem = g_menu_item_new (_("gtk-print"), NULL);
+		menuitem = g_menu_item_new (("gtk-print"), NULL);
 		g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>P", NULL);
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_print), AWF_PRIN
@@ -1915,7 +1991,7 @@ static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 		g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (action));
 		g_object_unref (action);
 
-		menuitem = g_menu_item_new (_("gtk-about"), "win.gtk-about");
+		menuitem = g_menu_item_new (("gtk-about"), "win.gtk-about");
 		g_menu_item_set_attribute (menuitem, "accel", "s", "F1", NULL);
 		g_menu_append_item (menu, menuitem);
 		// G_CALLBACK (awf2_show_dialog_about), AWF_ABOU);
@@ -1923,17 +1999,17 @@ static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 		submenu = g_menu_new ();
 		g_menu_append_submenu (menu, _("More..."), G_MENU_MODEL (submenu));
 
-			menuitem = g_menu_item_new (_("gtk-cut"), NULL);
+			menuitem = g_menu_item_new (("gtk-cut"), NULL);
 			g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>X", NULL);
 			g_menu_append_item (submenu, menuitem);
 			// AWF_MCUT
 
-			menuitem = g_menu_item_new (_("gtk-copy"), NULL);
+			menuitem = g_menu_item_new (("gtk-copy"), NULL);
 			g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>C", NULL);
 			g_menu_append_item (submenu, menuitem);
 			// AWF_MCOP
 
-			menuitem = g_menu_item_new (_("gtk-paste"), NULL);
+			menuitem = g_menu_item_new (("gtk-paste"), NULL);
 			g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>V", NULL);
 			g_menu_append_item (submenu, menuitem);
 			// AWF_MPAS
@@ -2005,12 +2081,12 @@ static void awf2_create_traditional_menubar (gpointer app, GMenu *root) {
 		section = g_menu_new ();
 		g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
 
-			menuitem = g_menu_item_new (_("gtk-close"), "disabled");
+			menuitem = g_menu_item_new (("gtk-close"), "disabled");
 			g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>W", NULL);
 			g_menu_append_item (section, menuitem);
 			// AWF_CLOS
 
-			menuitem = g_menu_item_new (_("gtk-quit"), NULL);
+			menuitem = g_menu_item_new (("gtk-quit"), NULL);
 			g_menu_item_set_attribute (menuitem, "accel", "s", "<Control>Q", NULL);
 			g_menu_append_item (section, menuitem);
 			// G_CALLBACK (awf2_quit), AWF_QUIT
@@ -2404,8 +2480,8 @@ static void awf2_show_dialog_open () {
 		GTK_RESPONSE_ACCEPT,
 		NULL);
 
-	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
-	#if GTK_CHECK_VERSION (3,90,0)
+	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog); // todo
 		g_signal_connect (dialog, "response", G_CALLBACK (awf2_gtk40_closedialog), NULL);
 	#else
@@ -2420,7 +2496,7 @@ static void awf2_show_dialog_open_recent () {
 
 	GtkWidget *dialog;
 
-	#if !GTK_CHECK_VERSION (3,90,0)
+	#if !GTK_CHECK_VERSION (4,0,0)
 
 		dialog = gtk_recent_chooser_dialog_new (
 			"GtkRecentChooserDialog",
@@ -2431,7 +2507,7 @@ static void awf2_show_dialog_open_recent () {
 			GTK_RESPONSE_ACCEPT,
 			NULL);
 
-		gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
+		gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 	#endif
@@ -2453,8 +2529,8 @@ static void awf2_show_dialog_save () {
 		GTK_RESPONSE_ACCEPT,
 		NULL);
 
-	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
-	#if GTK_CHECK_VERSION (3,90,0)
+	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog); // todo
 	#else
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -2478,8 +2554,8 @@ static void awf2_show_dialog_properties () {
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("A widget factory is a theme preview application for GTK. It displays the various widget types provided by GTK in a single window allowing to see the visual effect of the applied theme."));
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "GtkMessageDialog");
-	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
-	#if GTK_CHECK_VERSION (3,90,0)
+	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog); // todo
 	#else
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -2497,8 +2573,8 @@ static void awf2_show_dialog_page_setup () {
 		"GtkPageSetupUnixDialog",
 		GTK_WINDOW (window));
 
-	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
-	#if GTK_CHECK_VERSION (3,90,0)
+	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog); // todo
 	#else
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -2516,8 +2592,8 @@ static void awf2_show_dialog_print () {
 		"GtkPrintUnixDialog",
 		GTK_WINDOW (window));
 
-	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
-	#if GTK_CHECK_VERSION (3,90,0)
+	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog); // todo
 	#else
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -2535,16 +2611,19 @@ static void awf2_show_dialog_about () {
 			_("A widget factory is a theme preview application for GTK. It displays the various widget types provided by GTK in a single window allowing to see the visual effect of the applied theme."),
 			g_strdup_printf (_("Remove %s file"), "~/.awf-gtk-accels"),
 			_("to reset keyboard shortcuts."),
-			g_strdup_printf (_("compiled with gtk %d.%d.%d and glib %d.%d.%d"),
+			g_strdup_printf (_("compiled with gtk %d.%d.%d and glib %d.%d.%d and pango %s"),
 				GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION,
-				GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION),
-			g_strdup_printf (_(" started with gtk %d.%d.%d and glib %d.%d.%d"),
+				GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION,
+				PANGO_VERSION_STRING),
+			g_strdup_printf (_(" started with gtk %d.%d.%d and glib %d.%d.%d and pango %s"),
 				gtk_major_version, gtk_minor_version, gtk_micro_version,
-				glib_major_version, glib_minor_version, glib_micro_version)),
+				glib_major_version, glib_minor_version, glib_micro_version,
+				pango_version_string ())
+		),
 		"website", "https://github.com/luigifab/awf-extended",
-		"copyright", "Copyright © 2020 Fabrice Creuzot (luigifab)\nCopyright © 2011-2017 Valère Monseur (valr)",
-		"icon-name", g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION),
-		"logo-icon-name", g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION),
+		"copyright", "Copyright © 2020-2021 Fabrice Creuzot (luigifab)\nCopyright © 2011-2017 Valère Monseur (valr)",
+		"icon-name", g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION),
+		"logo-icon-name", g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION),
 		"license", "A widget factory is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.",
 		"wrap-license", TRUE,
 		NULL);
@@ -2595,7 +2674,7 @@ static void awf2_show_dialog_calendar () {
 
 	// calendar
 	calendar = gtk_calendar_new ();
-	#if !GTK_CHECK_VERSION (3,90,0)
+	#if !GTK_CHECK_VERSION (4,0,0)
 		gtk_calendar_set_display_options (GTK_CALENDAR (calendar), GTK_CALENDAR_SHOW_HEADING |
 			GTK_CALENDAR_SHOW_DAY_NAMES | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
 	#endif
@@ -2608,15 +2687,15 @@ static void awf2_show_dialog_calendar () {
 	gtk_dialog_add_button (GTK_DIALOG (dialog), "gtk-cancel", 0);
 	gtk_dialog_add_button (GTK_DIALOG (dialog), "gtk-ok", 0);
 
-	#if GTK_CHECK_VERSION (3,90,0)
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog);
 	#else
 		gtk_widget_show_all (dialog);
 	#endif
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "GtkDialog");
-	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", TRUE_GTK_MAJOR_VERSION));
-	#if GTK_CHECK_VERSION (3,90,0)
+	gtk_window_set_icon_name (GTK_WINDOW (dialog), g_strdup_printf ("awf-gtk%d", GTK_MAJOR_VERSION));
+	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_show (dialog); // todo
 	#else
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -2628,7 +2707,7 @@ static void awf2_show_dialog_calendar () {
 // for awf2_gtk34_scrolltabs source function is capplet_dialog_page_scroll_event_cb
 // of mate-appearance-properties from mate-control-center, GNU GPL 2+
 
-#if GTK_CHECK_VERSION (3,90,0)
+#if GTK_CHECK_VERSION (4,0,0)
 
 static void awf2_gtk40_closedialog (GtkDialog *dialog) {
 	gtk_window_destroy (GTK_WINDOW (dialog));

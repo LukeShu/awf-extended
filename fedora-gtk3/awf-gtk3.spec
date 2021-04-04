@@ -1,5 +1,5 @@
 Name:        awf-gtk3
-Version:     2.2.0
+Version:     2.3.0
 Release:     1%{?dist}
 Summary:     Theme preview application for GTK
 Summary(fr): Application d'aperçu de thème pour GTK
@@ -69,5 +69,8 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 
 
 %changelog
+* Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
+- New upstream version
+
 * Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
 - Initial fedora package release (Closes: #1893323)
