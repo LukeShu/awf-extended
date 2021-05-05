@@ -2,9 +2,8 @@
 # debian: sudo apt install dpkg-dev devscripts build-essential dh-make dh-autoreconf intltool libgtk2.0-dev
 
 
-
 cd "$(dirname "$0")"
-version="2.3.0"
+version="2.4.0"
 gtk="gtk2"
 
 rm -rf builder/
@@ -105,7 +104,7 @@ for serie in unstable hirsute groovy focal bionic xenial trusty precise; do
 	cd ..
 done
 
-ls -dltrh $PWD/builder/*.deb $PWD/builder/*.changes
+ls -dltrh builder/*.deb builder/*.changes
 echo "==========================="
 
 # cleanup

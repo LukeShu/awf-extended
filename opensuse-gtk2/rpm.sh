@@ -1,10 +1,10 @@
 #!/bin/bash
-# fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk3-devel desktop-file-utils hunspell-fr
-# fedora: configure: error: C compiler cannot create executables? remove and reinstall glibc-devel gcc
+# opensuse: sudo zypper install rpmdevtools rpmlint rpm-build autoconf automake gtk2-devel desktop-file-utils aspell-fr
+
 
 cd "$(dirname "$0")"
 version="2.4.0"
-gtk="gtk3"
+gtk="gtk2"
 
 rm -rf builder/ ~/rpmbuild/
 mkdir -p builder ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
@@ -20,7 +20,7 @@ else
 	rm -rf /tmp/${temp}/*/builder/
 
 	mv /tmp/${temp} builder/
-	cp /usr/share/licenses/linux-firmware/GPL-3 builder/${temp}/LICENSE
+	cp /usr/share/licenses/kernel-firmware/GPL-3 builder/${temp}/LICENSE
 
 	cd builder/
 	tar czf ${temp}.tar.gz ${temp}

@@ -2,9 +2,8 @@
 # debian: sudo apt install dpkg-dev devscripts build-essential dh-make dh-autoreconf intltool libgtk-4-dev
 
 
-
 cd "$(dirname "$0")"
-version="2.3.0"
+version="2.4.0"
 gtk="gtk4"
 
 rm -rf builder/
@@ -31,7 +30,7 @@ else
 fi
 
 
-# create packages for debian and ubuntu (groovy focal bionic xenial trusty precise)
+# create packages for debian and ubuntu
 for serie in experimental hirsute; do
 
 	if [ $serie = "experimental" ]; then
@@ -105,7 +104,7 @@ for serie in experimental hirsute; do
 	cd ..
 done
 
-ls -dltrh $PWD/builder/*.deb $PWD/builder/*.changes
+ls -dltrh builder/*.deb builder/*.changes
 echo "==========================="
 
 # cleanup

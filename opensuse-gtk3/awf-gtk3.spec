@@ -1,9 +1,9 @@
 Name:          awf-gtk3
 Version:       2.4.0
-Release:       1%{?dist}
+Release:       0
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
-License:       GPLv3+
+License:       GPL-3.0-or-later
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
@@ -13,7 +13,7 @@ BuildRequires: gcc
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: desktop-file-utils
-BuildRequires: hunspell-fr
+BuildRequires: aspell-fr
 Requires:      gtk3
 Requires:      hicolor-icon-theme
 
@@ -72,7 +72,4 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 - New upstream version
 
 * Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- New upstream version
-
-* Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
-- Initial fedora package release (Closes: rhbz#1893323)
+- Initial opensuse package release

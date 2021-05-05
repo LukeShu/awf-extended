@@ -1,10 +1,9 @@
 #!/bin/bash
-# debian: sudo apt install dpkg-dev devscripts build-essential dh-make dh-autoreconf intltool libgtk2.0-dev rpm
-# fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk2-devel
+# fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk2-devel desktop-file-utils hunspell-fr
 # fedora: configure: error: C compiler cannot create executables? remove and reinstall glibc-devel gcc
 
 cd "$(dirname "$0")"
-version="2.3.0"
+version="2.4.0"
 gtk="gtk2"
 
 rm -rf builder/ ~/rpmbuild/
@@ -21,7 +20,7 @@ else
 	rm -rf /tmp/${temp}/*/builder/
 
 	mv /tmp/${temp} builder/
-	cp /usr/share/common-licenses/GPL-3 builder/${temp}/LICENSE
+	cp /usr/share/licenses/linux-firmware/GPL-3 builder/${temp}/LICENSE
 
 	cd builder/
 	tar czf ${temp}.tar.gz ${temp}
@@ -32,7 +31,7 @@ else
 fi
 
 # create package (rpm sign https://access.redhat.com/articles/3359321)
-rpmbuild --nodeps -ba awf-${gtk}.spec
+rpmbuild -ba awf-${gtk}.spec
 rpm --addsign ~/rpmbuild/RPMS/*/*.rpm
 rpm --addsign ~/rpmbuild/SRPMS/*.rpm
 mv ~/rpmbuild/RPMS/*/*.rpm builder/
@@ -42,7 +41,7 @@ rpm --checksig builder/*.rpm
 echo "==========================="
 rpmlint awf-${gtk}.spec builder/*.rpm
 echo "==========================="
-ls -dltrh $PWD/builder/*.rpm
+ls -dltrh builder/*.rpm
 echo "==========================="
 
 # cleanup

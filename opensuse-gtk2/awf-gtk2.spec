@@ -1,20 +1,20 @@
-Name:          awf-gtk3
+Name:          awf-gtk2
 Version:       2.4.0
-Release:       1%{?dist}
+Release:       0
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
-License:       GPLv3+
+License:       GPL-3.0-or-later
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires: gtk3-devel
+BuildRequires: gtk2-devel
 BuildRequires: gettext
 BuildRequires: gcc
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: desktop-file-utils
-BuildRequires: hunspell-fr
-Requires:      gtk3
+BuildRequires: aspell-fr
+Requires:      gtk2
 Requires:      hicolor-icon-theme
 
 %description %{expand:
@@ -22,19 +22,19 @@ A widget factory is a theme preview application for GTK. It displays the
 various widget types provided by GTK in a single window allowing to see
 the visual effect of the applied theme.
 
-This package provides the gtk3 version.}
+This package provides the gtk2 version.}
 
 %description -l fr %{expand:
 La fabrique à widgets est une application d'aperçu de thème pour GTK. Elle
 affiche les différents types de widgets fournis par GTK dans une seule
 fenêtre permettant de voir l'effet visuel du thème appliqué.
 
-Ce paquet fournit la version gtk3.}
+Ce paquet fournit la version gtk2.}
 
 
 %prep
 %setup -q -n awf-extended-%{version}
-sed -i 's/ -eq 2/ -eq -1/g' configure.ac
+sed -i 's/ -eq 3/ -eq -1/g' configure.ac
 sed -i 's/ -eq 4/ -eq -1/g' configure.ac
 touch {NEWS,AUTHORS,README,ChangeLog}
 mv LICENSE COPYING
@@ -72,7 +72,4 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 - New upstream version
 
 * Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- New upstream version
-
-* Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
-- Initial fedora package release (Closes: rhbz#1893323)
+- Initial opensuse package release

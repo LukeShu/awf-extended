@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-26 14:35+0100\n"
+"POT-Creation-Date: 2021-05-01 10:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,148 +17,143 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gtk-awf/src/awf.c:270 gtk-awf/src/awf.c:2618
+#: gtk-awf/src/awf.c:273 gtk-awf/src/awf.c:2958
 #, c-format
 msgid " started with gtk %d.%d.%d and glib %d.%d.%d and pango %s"
 msgstr ""
 
-#: gtk-awf/src/awf.c:2025 gtk-awf/src/awf.c:2039 gtk-awf/src/awf.c:2054
-#: gtk-awf/src/awf.c:2071 gtk-awf/src/awf.c:2217 gtk-awf/src/awf.c:2223
-#: gtk-awf/src/awf.c:2230 gtk-awf/src/awf.c:2237
+#: gtk-awf/src/awf.c:2324 gtk-awf/src/awf.c:2353 gtk-awf/src/awf.c:2375
+#: gtk-awf/src/awf.c:2398 gtk-awf/src/awf.c:2552 gtk-awf/src/awf.c:2559
+#: gtk-awf/src/awf.c:2567 gtk-awf/src/awf.c:2575
 msgid "(checked)"
 msgstr ""
 
-#: gtk-awf/src/awf.c:2028 gtk-awf/src/awf.c:2042 gtk-awf/src/awf.c:2058
-#: gtk-awf/src/awf.c:2075 gtk-awf/src/awf.c:2218 gtk-awf/src/awf.c:2224
-#: gtk-awf/src/awf.c:2231 gtk-awf/src/awf.c:2238
+#: gtk-awf/src/awf.c:2553 gtk-awf/src/awf.c:2560 gtk-awf/src/awf.c:2568
+#: gtk-awf/src/awf.c:2576
 msgid "(inconsistent)"
 msgstr ""
 
-#: gtk-awf/src/awf.c:2022 gtk-awf/src/awf.c:2036 gtk-awf/src/awf.c:2050
-#: gtk-awf/src/awf.c:2067 gtk-awf/src/awf.c:2216 gtk-awf/src/awf.c:2222
-#: gtk-awf/src/awf.c:2228 gtk-awf/src/awf.c:2235
+#: gtk-awf/src/awf.c:2315 gtk-awf/src/awf.c:2343 gtk-awf/src/awf.c:2371
+#: gtk-awf/src/awf.c:2394 gtk-awf/src/awf.c:2551 gtk-awf/src/awf.c:2558
+#: gtk-awf/src/awf.c:2565 gtk-awf/src/awf.c:2573
 msgid "(unchecked)"
 msgstr ""
 
-#: gtk-awf/src/awf.c:265 gtk-awf/src/awf.c:654
+#: gtk-awf/src/awf.c:268 gtk-awf/src/awf.c:710
 #, c-format
 msgid "A widget factory - GTK %d - %s"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1690 gtk-awf/src/awf.c:2554 gtk-awf/src/awf.c:2611
+#: gtk-awf/src/awf.c:1809 gtk-awf/src/awf.c:2888 gtk-awf/src/awf.c:2951
 msgid ""
 "A widget factory is a theme preview application for GTK. It displays the "
 "various widget types provided by GTK in a single window allowing to see the "
 "visual effect of the applied theme."
 msgstr ""
 
-#: gtk-awf/src/awf.c:1961 gtk-awf/src/awf.c:2158
+#: gtk-awf/src/awf.c:2229 gtk-awf/src/awf.c:2490
 msgid "Calendar"
 msgstr ""
 
-#: gtk-awf/src/awf.c:281
+#: gtk-awf/src/awf.c:284
 msgid "Don't start spinners"
 msgstr ""
 
-#: gtk-awf/src/awf.c:280
+#: gtk-awf/src/awf.c:283
 msgid "List available themes"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1670 gtk-awf/src/awf.c:2000 gtk-awf/src/awf.c:2196
+#: gtk-awf/src/awf.c:1786 gtk-awf/src/awf.c:2288 gtk-awf/src/awf.c:2530
 msgid "More..."
 msgstr ""
 
-#: gtk-awf/src/awf.c:1927 gtk-awf/src/awf.c:1944 gtk-awf/src/awf.c:2127
-#: gtk-awf/src/awf.c:2140
+#: gtk-awf/src/awf.c:2190 gtk-awf/src/awf.c:2204 gtk-awf/src/awf.c:2459
+#: gtk-awf/src/awf.c:2472
 msgid "No themes found"
 msgstr ""
 
-#: gtk-awf/src/awf.c:2657
+#: gtk-awf/src/awf.c:2999 gtk-awf/src/awf.c:3031
 msgid "Ok"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1957 gtk-awf/src/awf.c:2154
+#: gtk-awf/src/awf.c:2221 gtk-awf/src/awf.c:2486
 msgid "Open recent file"
 msgstr ""
 
-#: gtk-awf/src/awf.c:278
+#: gtk-awf/src/awf.c:281
 msgid "Options:"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1970 gtk-awf/src/awf.c:2168
-msgid "Refresh theme"
-msgstr ""
-
-#: gtk-awf/src/awf.c:2612
+#: gtk-awf/src/awf.c:2952
 #, c-format
 msgid "Remove %s file"
 msgstr ""
 
-#: gtk-awf/src/awf.c:283
+#: gtk-awf/src/awf.c:286
 #, c-format
 msgid "Run and save a png screenshot on %s"
 msgstr ""
 
-#: gtk-awf/src/awf.c:282
+#: gtk-awf/src/awf.c:285
 msgid "Run with the specified theme"
 msgstr ""
 
-#: gtk-awf/src/awf.c:279
+#: gtk-awf/src/awf.c:282
 msgid "Show version number"
 msgstr ""
 
-#: gtk-awf/src/awf.c:424 gtk-awf/src/awf.c:693
+#: gtk-awf/src/awf.c:427 gtk-awf/src/awf.c:751
 #, c-format
 msgid "Theme %s loaded."
 msgstr ""
 
-#: gtk-awf/src/awf.c:404
+#: gtk-awf/src/awf.c:407
 #, c-format
 msgid "Theme %s reloaded at"
 msgstr ""
 
-#: gtk-awf/src/awf.c:623
+#: gtk-awf/src/awf.c:687
 #, c-format
 msgid "Theme reloaded, then screenshot saved (%s) at"
 msgstr ""
 
-#: gtk-awf/src/awf.c:2659
+#: gtk-awf/src/awf.c:3001 gtk-awf/src/awf.c:3033
 msgid "This is a question bar."
 msgstr ""
 
-#: gtk-awf/src/awf.c:2665
+#: gtk-awf/src/awf.c:3007 gtk-awf/src/awf.c:3039
 msgid "This is a warning bar."
 msgstr ""
 
-#: gtk-awf/src/awf.c:2671
+#: gtk-awf/src/awf.c:3013 gtk-awf/src/awf.c:3045
 msgid "This is an error bar."
 msgstr ""
 
-#: gtk-awf/src/awf.c:2653
+#: gtk-awf/src/awf.c:2995 gtk-awf/src/awf.c:3027
 msgid "This is an info bar."
 msgstr ""
 
-#: gtk-awf/src/awf.c:274
+#: gtk-awf/src/awf.c:277
 msgid "Usage:"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1950 gtk-awf/src/awf.c:2143
+#: gtk-awf/src/awf.c:2210 gtk-awf/src/awf.c:2475
 msgid "_Options"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1916 gtk-awf/src/awf.c:2117
+#: gtk-awf/src/awf.c:2182 gtk-awf/src/awf.c:2449
 msgid "_System theme"
 msgstr ""
 
-#: gtk-awf/src/awf.c:1933 gtk-awf/src/awf.c:2130
+#: gtk-awf/src/awf.c:2196 gtk-awf/src/awf.c:2462
 msgid "_User theme"
 msgstr ""
 
-#: gtk-awf/src/awf.c:266 gtk-awf/src/awf.c:2614
+#: gtk-awf/src/awf.c:269 gtk-awf/src/awf.c:2954
 #, c-format
 msgid "compiled with gtk %d.%d.%d and glib %d.%d.%d and pango %s"
 msgstr ""
 
-#: gtk-awf/src/awf.c:2613
+#: gtk-awf/src/awf.c:2953
 msgid "to reset keyboard shortcuts."
 msgstr ""
