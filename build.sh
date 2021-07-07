@@ -1,7 +1,7 @@
 #!/bin/bash
-# debian: sudo apt install build-essential dh-make dh-autoreconf intltool libgtk2.0-dev libgtk-3-dev libgtk-4-dev
-# fedora: sudo dnf install autoconf automake gtk2-devel gtk3-devel gtk4-devel desktop-file-utils
-# opensuse: sudo zypper install autoconf automake gtk2-devel gtk3-devel gtk4-devel desktop-file-utils
+# Debian: sudo apt install build-essential dh-make dh-autoreconf intltool libgtk2.0-dev libgtk-3-dev libgtk-4-dev
+# Fedora: sudo dnf install autoconf automake gtk2-devel gtk3-devel gtk4-devel desktop-file-utils
+# openSUSE: sudo zypper install autoconf automake gtk2-devel gtk3-devel gtk4-devel desktop-file-utils
 
 # remove old builds
 rm -f awf-gtk2 awf-gtk3 awf-gtk4
@@ -22,7 +22,7 @@ cp src/awf.c       builder/src/
 cd builder/
 autoreconf -f -i
 ./configure
-make
+make -s
 
 # final
 cp src/awf-gtk* ..

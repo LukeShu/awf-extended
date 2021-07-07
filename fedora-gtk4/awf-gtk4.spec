@@ -1,5 +1,5 @@
 Name:          awf-gtk4
-Version:       2.4.0
+Version:       2.5.0
 Release:       1%{?dist}
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
@@ -68,8 +68,11 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 
 
 %changelog
+* Wed Jul 07 2021 Fabrice Creuzot <code@luigifab.fr> - 2.5.0-1
+- New upstream version
+
 * Wed May 05 2021 Fabrice Creuzot <code@luigifab.fr> - 2.4.0-1
 - New upstream version
 
 * Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- Initial fedora package release (Closes: rhbz#1946092)
+- Initial Fedora package release (Closes: rhbz#1946092)
