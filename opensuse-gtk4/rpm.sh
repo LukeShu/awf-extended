@@ -3,7 +3,7 @@
 
 
 cd "$(dirname "$0")"
-version="2.5.0"
+version="2.6.0"
 gtk="gtk4"
 
 rm -rf builder/ ~/rpmbuild/

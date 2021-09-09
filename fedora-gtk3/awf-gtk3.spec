@@ -1,5 +1,5 @@
 Name:          awf-gtk3
-Version:       2.5.0
+Version:       2.6.0
 Release:       1%{?dist}
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
@@ -68,6 +68,9 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 
 
 %changelog
+* Thu Sep 09 2021 Fabrice Creuzot <code@luigifab.fr> - 2.6.0-1
+- New upstream version
+
 * Wed Jul 07 2021 Fabrice Creuzot <code@luigifab.fr> - 2.5.0-1
 - New upstream version
 

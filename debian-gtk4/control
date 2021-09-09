@@ -12,9 +12,9 @@ Vcs-Git: https://github.com/luigifab/awf-extended.git
 Package: awf-gtk4
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Theme preview application for GTK
+Description: theme preview application for GTK 4
  A widget factory is a theme preview application for GTK. It displays the
  various widget types provided by GTK in a single window allowing to see
  the visual effect of the applied theme.
  .
- This package provides the gtk4 version.
+ This package provides the GTK 4 version.

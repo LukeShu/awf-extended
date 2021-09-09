@@ -3,7 +3,7 @@
 
 
 cd "$(dirname "$0")"
-version="2.5.0"
+version="2.6.0"
 gtk="gtk3"
 
 rm -rf builder/
@@ -28,12 +28,12 @@ else
 	tar czf $temp.tar.gz $temp
 	cd ..
 fi
-
+rm builder/awf-extended-$version/debian
 
 # create packages for debian and ubuntu
-for serie in unstable impish hirsute groovy focal bionic xenial trusty precise; do
+for serie in experimental impish hirsute focal bionic xenial trusty; do
 
-	if [ $serie = "unstable" ]; then
+	if [ $serie = "experimental" ]; then
 		# for ubuntu
 		cp -a builder/awf-extended-$version/ builder/awf-extended-$version+src/
 		# debian only
@@ -46,17 +46,17 @@ for serie in unstable impish hirsute groovy focal bionic xenial trusty precise; 
 
 	dh_make -s -y -f ../awf-extended-$version.tar.gz -p awf-$gtk
 
-	rm -f debian/*ex debian/*EX debian/README* debian/*doc*
+	rm -f debian/*ex debian/*EX debian/README* debian/*doc* debian/deb.sh
 	mkdir debian/upstream
 	cp debian-$gtk/* debian/
 	mv debian/metadata debian/upstream/metadata
 
 
 
-	if [ $serie = "unstable" ]; then
+	if [ $serie = "experimental" ]; then
 		dpkg-buildpackage -us -uc
 	else
-		# debhelper: unstable:13 hirsute:13 groovy:13 focal:12 bionic:9 xenial:9 trusty:9 precise:9
+		# debhelper: experimental:13 hirsute:13 focal:12 bionic:9 xenial:9 trusty:9
 		if [ $serie = "focal" ]; then
 			sed -i 's/debhelper-compat (= 13)/debhelper-compat (= 12)/g' debian/control
 		fi
@@ -77,28 +77,21 @@ for serie in unstable impish hirsute groovy focal bionic xenial trusty precise; 
 			sed -i ':a;N;$!ba;s/Rules-Requires-Root: no\n//g' debian/control
 			echo 9 > debian/compat
 		fi
-		if [ $serie = "precise" ]; then
-			sed -i 's/dh $@/dh $@ --with autotools_dev,autoreconf/g' debian/rules
-			sed -i 's/override_dh_update_autotools_config/override_dh_autotools-dev_updateconfig/g' debian/rules
-			sed -i 's/debhelper-compat (= 13)/debhelper (>= 9), autotools-dev, dh-autoreconf/g' debian/control
-			sed -i ':a;N;$!ba;s/Rules-Requires-Root: no\n//g' debian/control
-			echo 9 > debian/compat
-		fi
-		sed -i 's/unstable/'$serie'/g' debian/changelog
+		sed -i 's/experimental/'$serie'/g' debian/changelog
 		sed -i 's/-1) /-1+'$serie') /' debian/changelog
 		dpkg-buildpackage -us -uc -ui -d -S
 	fi
 	echo "==========================="
 	cd ..
 
-	if [ $serie = "unstable" ]; then
+	if [ $serie = "experimental" ]; then
 		# debian only
-		debsign awf-$gtk_$version-*.changes
+		debsign awf-${gtk}_$version-*.changes
 		echo "==========================="
-		lintian -EviIL +pedantic awf-$gtk_$version-*.deb
+		lintian -EviIL +pedantic awf-${gtk}_$version-*.deb
 	else
 		# ubuntu only
-		debsign awf-$gtk_$version*+$serie*source.changes
+		debsign awf-${gtk}_$version*+$serie*source.changes
 	fi
 	echo "==========================="
 	cd ..

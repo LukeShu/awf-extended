@@ -1,10 +1,10 @@
-awf-gtk2 (2.6.0-1) experimental; urgency=low
+awf-gtk (2.6.0-1) experimental; urgency=low
 
   * New upstream version
 
  -- Fabrice Creuzot <code@luigifab.fr>  Thu, 09 Sep 2021 20:00:00 +0000
 
-awf-gtk2 (2.5.0-1) experimental; urgency=low
+awf-gtk (2.5.0-5) experimental; urgency=low
 
   * Initial debian package release (Closes: #959434)
 

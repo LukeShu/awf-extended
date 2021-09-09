@@ -1,8 +1,8 @@
 Name:          awf-gtk4
-Version:       2.5.0
+Version:       2.6.0
 Release:       0
-Summary:       Theme preview application for GTK
-Summary(fr):   Application d'aperçu de thème pour GTK
+Summary:       Theme preview application for GTK 4
+Summary(fr):   Application d'aperçu de thème pour GTK 4
 License:       GPL-3.0-or-later
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -22,14 +22,14 @@ A widget factory is a theme preview application for GTK. It displays the
 various widget types provided by GTK in a single window allowing to see
 the visual effect of the applied theme.
 
-This package provides the gtk4 version.}
+This package provides the GTK 4 version.}
 
 %description -l fr %{expand:
 La fabrique à widgets est une application d'aperçu de thème pour GTK. Elle
 affiche les différents types de widgets fournis par GTK dans une seule
 fenêtre permettant de voir l'effet visuel du thème appliqué.
 
-Ce paquet fournit la version gtk4.}
+Ce paquet fournit la version GTK 4.}
 
 
 %prep
@@ -68,6 +68,9 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 
 
 %changelog
+* Thu Sep 09 2021 Fabrice Creuzot <code@luigifab.fr> - 2.6.0-1
+- New upstream version
+
 * Wed Jul 07 2021 Fabrice Creuzot <code@luigifab.fr> - 2.5.0-1
 - New upstream version
 

@@ -1,5 +1,11 @@
-awf-gtk3 (2.5.0-1) unstable; urgency=low
+awf-gtk3 (2.6.0-1) experimental; urgency=low
 
-  * Initial debian package release (Closes: #959436)
+  * New upstream version
+
+ -- Fabrice Creuzot <code@luigifab.fr>  Thu, 09 Sep 2021 20:00:00 +0000
+
+awf-gtk3 (2.5.0-1) experimental; urgency=low
+
+  * Initial debian package release (Closes: #959434)
 
  -- Fabrice Creuzot <code@luigifab.fr>  Wed, 07 Jul 2021 20:00:00 +0000

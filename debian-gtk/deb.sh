@@ -1,10 +1,10 @@
 #!/bin/bash
-# debian: sudo apt install dpkg-dev devscripts build-essential dh-make dh-autoreconf intltool libgtk-4-dev
+# debian: sudo apt install dpkg-dev devscripts build-essential dh-make dh-autoreconf intltool libgtk2.0-dev libgtk-3-dev libgtk-4-dev
 
 
 cd "$(dirname "$0")"
 version="2.6.0"
-gtk="gtk4"
+
 
 rm -rf builder/
 mkdir builder
@@ -31,7 +31,7 @@ fi
 rm builder/awf-extended-$version/debian
 
 # create packages for debian and ubuntu
-for serie in experimental impish hirsute; do
+for serie in experimental; do
 
 	if [ $serie = "experimental" ]; then
 		# for ubuntu
@@ -44,11 +44,11 @@ for serie in experimental impish hirsute; do
 		cd builder/awf-extended-$version+$serie/
 	fi
 
-	dh_make -s -y -f ../awf-extended-$version.tar.gz -p awf-$gtk
+	dh_make -s -y -f ../awf-extended-$version.tar.gz -p awf-gtk
 
 	rm -f debian/*ex debian/*EX debian/README* debian/*doc* debian/deb.sh
 	mkdir debian/upstream
-	cp debian-$gtk/* debian/
+	cp debian-gtk/* debian/
 	mv debian/metadata debian/upstream/metadata
 
 
@@ -86,12 +86,12 @@ for serie in experimental impish hirsute; do
 
 	if [ $serie = "experimental" ]; then
 		# debian only
-		debsign awf-${gtk}_$version-*.changes
+		debsign awf-gtk_$version-*.changes
 		echo "==========================="
-		lintian -EviIL +pedantic awf-${gtk}_$version-*.deb
+		lintian -EviIL +pedantic awf-gtk_$version-*.deb
 	else
 		# ubuntu only
-		debsign awf-${gtk}_$version*+$serie*source.changes
+		debsign awf-gtk_$version*+$serie*source.changes
 	fi
 	echo "==========================="
 	cd ..
