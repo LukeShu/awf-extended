@@ -1,5 +1,5 @@
 Name:          awf-gtk3
-Version:       2.6.0
+Version:       2.7.0
 Release:       1%{?dist}
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
@@ -48,6 +48,7 @@ autoreconf -f -i
 %make_install
 mkdir -p %{buildroot}%{_datadir}/applications/
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/
+mkdir -p %{buildroot}%{_mandir}/man1/ %{buildroot}%{_mandir}/fr/man1/
 for file in icons/*/*/*; do mv $file ${file/\/awf./\/%{name}.}; done
 cp -a icons/* %{buildroot}%{_datadir}/icons/hicolor/
 for file in src/po/*.po; do
@@ -55,10 +56,13 @@ for file in src/po/*.po; do
   mkdir -p %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/
   msgfmt src/po/${code}.po -o %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/%{name}.mo
 done
+install -p -m 644 debian-gtk/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -p -m 644 debian-gtk/%{name}.fr.1 %{buildroot}%{_mandir}/fr/man1/%{name}.1
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{name}.desktop
-%find_lang %{name}
+%find_lang %{name} --with-man
 
 %files -f %{name}.lang
+%{_mandir}/man1/%{name}.1*
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
@@ -68,17 +72,20 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 
 
 %changelog
+* Tue Jun 06 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-1
+- New upstream release
+
 * Thu Sep 09 2021 Fabrice Creuzot <code@luigifab.fr> - 2.6.0-1
-- New upstream version
+- New upstream release
 
 * Wed Jul 07 2021 Fabrice Creuzot <code@luigifab.fr> - 2.5.0-1
-- New upstream version
+- New upstream release
 
 * Wed May 05 2021 Fabrice Creuzot <code@luigifab.fr> - 2.4.0-1
-- New upstream version
+- New upstream release
 
 * Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- New upstream version
+- New upstream release
 
 * Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
 - Initial Fedora package release (Closes: rhbz#1893323)
