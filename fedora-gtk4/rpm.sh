@@ -1,5 +1,5 @@
 #!/bin/bash
-# Fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk4-devel desktop-file-utils hunspell-fr
+# Fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk4-devel desktop-file-utils aspell-fr enchant2-aspell
 # Fedora: configure: error: C compiler cannot create executables? remove and reinstall glibc-devel gcc
 
 cd "$(dirname "$0")"

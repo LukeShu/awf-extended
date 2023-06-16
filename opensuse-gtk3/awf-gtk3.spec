@@ -7,13 +7,13 @@ License:       GPL-3.0-or-later
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires: gtk3-devel
-BuildRequires: gettext
-BuildRequires: gcc
+BuildRequires: aspell-fr
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: desktop-file-utils
-BuildRequires: aspell-fr
+BuildRequires: gcc
+BuildRequires: gettext
+BuildRequires: gtk3-devel
 Requires:      gtk3
 Requires:      hicolor-icon-theme
 
@@ -40,7 +40,7 @@ touch {NEWS,AUTHORS,README,ChangeLog}
 mv LICENSE COPYING
 
 %build
-autoreconf -f -i
+autoreconf -fi
 %configure
 %make_build
 
@@ -62,16 +62,19 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 %find_lang %{name} --with-man
 
 %files -f %{name}.lang
-%{_mandir}/man1/%{name}.1*
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
+%{_mandir}/man1/%{name}.1*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 
 
 %changelog
+* Fri Jun 16 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-2
+- Package spec update
+
 * Tue Jun 06 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-1
 - New upstream release
 
