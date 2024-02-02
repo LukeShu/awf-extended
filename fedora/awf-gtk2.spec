@@ -1,9 +1,9 @@
 Name:          awf-gtk2
-Version:       2.7.0
-Release:       0
-Summary:       Theme preview application for GTK 2
-Summary(fr):   Application d'aperçu de thème pour GTK 2
-License:       GPL-3.0-or-later
+Version:       2.8.0
+Release:       1%{?dist}
+Summary:       Theme preview application for GTK
+Summary(fr):   Application d'aperçu de thème pour GTK
+License:       GPLv3+
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
@@ -47,31 +47,38 @@ autoreconf -fi
 %install
 %make_install
 mkdir -p %{buildroot}%{_datadir}/applications/
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{name}.desktop
+
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/
-mkdir -p %{buildroot}%{_mandir}/man1/ %{buildroot}%{_mandir}/fr/man1/
-for file in icons/*/*/*; do mv $file ${file/\/awf./\/%{name}.}; done
+for file in icons/*/*/awf.png; do mv $file ${file/\/awf.png/\/%{name}.png}; done
+for file in icons/*/*/awf.svg; do mv $file ${file/\/awf.svg/\/%{name}.svg}; done
 cp -a icons/* %{buildroot}%{_datadir}/icons/hicolor/
+
+mkdir -p %{buildroot}%{_mandir}/man1/ %{buildroot}%{_mandir}/fr/man1/
+install -pm 644 debian/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -pm 644 debian/%{name}.fr.1 %{buildroot}%{_mandir}/fr/man1/%{name}.1
+
 for file in src/po/*.po; do
   code=$(basename "$file" .po)
   mkdir -p %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/
   msgfmt src/po/${code}.po -o %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/%{name}.mo
 done
-install -p -m 644 debian-gtk/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-install -p -m 644 debian-gtk/%{name}.fr.1 %{buildroot}%{_mandir}/fr/man1/%{name}.1
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{name}.desktop
 %find_lang %{name} --with-man
 
 %files -f %{name}.lang
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+%{_mandir}/man1/%{name}.1*
 
 
 %changelog
+* Fri Feb 02 2024 Fabrice Creuzot <code@luigifab.fr> - 2.8.0-1
+- New upstream release
+
 * Fri Jun 16 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-2
 - Package spec update
 
@@ -88,4 +95,7 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{
 - New upstream release
 
 * Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- Initial openSUSE package release
+- New upstream release
+
+* Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
+- Initial Fedora package release (Closes: rhbz#1893321)

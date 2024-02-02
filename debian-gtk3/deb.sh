@@ -3,11 +3,11 @@
 
 
 cd "$(dirname "$0")"
-version="2.7.0"
+version="2.8.0"
 gtk="gtk3"
 
-rm -rf builder/
 mkdir builder
+rm -rf builder/*
 
 # copy to a tmp directory
 if [ true ]; then
@@ -31,10 +31,10 @@ fi
 
 
 # create packages for Debian and Ubuntu
-for serie in experimental mantic lunar kinetic jammy focal bionic xenial trusty; do
+for serie in experimental noble mantic jammy focal bionic xenial trusty; do
 
 	if [ $serie = "experimental" ]; then
-		# for Ubuntu
+		# copy for Ubuntu
 		cp -a builder/awf-extended-$version/ builder/awf-extended-$version+src/
 		# Debian only
 		cd builder/awf-extended-$version/
@@ -49,7 +49,7 @@ for serie in experimental mantic lunar kinetic jammy focal bionic xenial trusty;
 	rm -f debian/*ex debian/*EX debian/README* debian/*doc*
 	mkdir debian/upstream
 	cp debian-$gtk/* debian/
-	rm debian/deb.sh
+	rm debian/deb.sh debian/*.install
 	mv debian/metadata debian/upstream/metadata
 
 

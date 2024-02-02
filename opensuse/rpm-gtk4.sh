@@ -1,13 +1,13 @@
 #!/bin/bash
-# Fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk2-devel desktop-file-utils aspell-fr enchant2-aspell
-# Fedora: configure: error: C compiler cannot create executables? remove and reinstall glibc-devel gcc
+# openSUSE: sudo zypper install rpmdevtools rpmlint rpm-build autoconf automake gtk4-devel desktop-file-utils aspell-fr
+
 
 cd "$(dirname "$0")"
-version="2.7.0"
-gtk="gtk2"
+version="2.8.0"
+gtk="gtk4"
 
-rm -rf builder/
 mkdir -p builder ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+find builder/* ! -name "*$version*.rpm" ! -name "*$version*.gz" -exec rm -rf {} + 2>/dev/null
 
 # copy to a tmp directory
 if [ true ]; then
@@ -20,7 +20,7 @@ else
 	rm -rf /tmp/$temp/*/builder/
 
 	mv /tmp/$temp builder/
-	cp /usr/share/licenses/linux-firmware/GPL-3 builder/$temp/LICENSE
+	cp /usr/share/licenses/*-firmware/GPL-3 builder/$temp/LICENSE # * = kernel
 
 	cd builder/
 	tar czf $temp.tar.gz $temp
@@ -32,10 +32,10 @@ fi
 
 # create package (rpm sign https://access.redhat.com/articles/3359321)
 rpmbuild -ba awf-$gtk.spec
-rpm --addsign ~/rpmbuild/RPMS/*/*.rpm
-rpm --addsign ~/rpmbuild/SRPMS/*.rpm
-mv ~/rpmbuild/RPMS/*/*.rpm builder/
-mv ~/rpmbuild/SRPMS/*.rpm builder/
+rpm --addsign ~/rpmbuild/RPMS/*/awf-$gtk*.rpm
+rpm --addsign ~/rpmbuild/SRPMS/awf-$gtk*.rpm
+mv ~/rpmbuild/RPMS/*/awf-$gtk*.rpm builder/
+mv ~/rpmbuild/SRPMS/awf-$gtk*.rpm builder/
 echo "==========================="
 rpm --checksig builder/*.rpm
 echo "==========================="

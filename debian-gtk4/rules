@@ -13,8 +13,8 @@ override_dh_update_autotools_config:
 	touch README
 	touch ChangeLog
 	mv LICENSE COPYING
-	for file in icons/*/*/*.png; do mv $$file `dirname $$file`/awf-gtk4.png; done
-	for file in icons/*/*/*.svg; do mv $$file `dirname $$file`/awf-gtk4.svg; done
+	for file in icons/*/*/awf.png; do mv $$file `dirname $$file`/awf-gtk4.png; done
+	for file in icons/*/*/awf.svg; do mv $$file `dirname $$file`/awf-gtk4.svg; done
 	for file in src/po/*.po; do \
 		code=`basename "$$file" .po`; \
 		mkdir -p locale/$$code/LC_MESSAGES/; \
