@@ -5,22 +5,22 @@ A widget factory is a theme preview application for GTK. It displays the various
 ## Screenshots
 
 GTK 2.24 (Pango 1.51)\
-[![Preview with GTK 2 - Main window](images/thumbs/gtk2.png?raw=true)](images/gtk2.png?raw=true)
-[![Preview with GTK 2 - Menu](images/thumbs/gtk2-menu.png?raw=true)](images/gtk2-menu.png?raw=true)
-[![Preview with GTK 2 - RTL - Main window](images/thumbs/gtk2-rtl.png?raw=true)](images/gtk2-rtl.png?raw=true)
-[![Preview with GTK 2 - RTL - Menu](images/thumbs/gtk2-rtl-menu.png?raw=true)](images/gtk2-rtl-menu.png?raw=true)
+[<img alt="Preview with GTK 2 - Main window" src="images/thumbs/gtk2.png?raw=true" width="200" />](images/gtk2.png?raw=true)
+[<img alt="Preview with GTK 2 - Menu" src="images/thumbs/gtk2-menu.png?raw=true" width="200" />](images/gtk2-menu.png?raw=true)
+[<img alt="Preview with GTK 2 - RTL - Main window" src="images/thumbs/gtk2-rtl.png?raw=true" width="200" />](images/gtk2-rtl.png?raw=true)
+[<img alt="Preview with GTK 2 - RTL - Menu" src="images/thumbs/gtk2-rtl-menu.png?raw=true" width="200" />](images/gtk2-rtl-menu.png?raw=true)
 
 GTK 3.24 (Pango 1.51)\
-[![Preview with GTK 3 - Main window](images/thumbs/gtk3.png?raw=true)](images/gtk3.png?raw=true)
-[![Preview with GTK 3 - Menu](images/thumbs/gtk3-menu.png?raw=true)](images/gtk3-menu.png?raw=true)
-[![Preview with GTK 3 - RTL - Main window](images/thumbs/gtk3-rtl.png?raw=true)](images/gtk3-rtl.png?raw=true)
-[![Preview with GTK 3 - RTL - Menu](images/thumbs/gtk3-rtl-menu.png?raw=true)](images/gtk3-rtl-menu.png?raw=true)
+[<img alt="Preview with GTK 3 - Main window" src="images/thumbs/gtk3.png?raw=true" width="200" />](images/gtk3.png?raw=true)
+[<img alt="Preview with GTK 3 - Menu" src="images/thumbs/gtk3-menu.png?raw=true" width="200" />](images/gtk3-menu.png?raw=true)
+[<img alt="Preview with GTK 3 - RTL - Main window" src="images/thumbs/gtk3-rtl.png?raw=true" width="200" />](images/gtk3-rtl.png?raw=true)
+[<img alt="Preview with GTK 3 - RTL - Menu" src="images/thumbs/gtk3-rtl-menu.png?raw=true" width="200" />](images/gtk3-rtl-menu.png?raw=true)
 
 GTK 4.12 (Pango 1.51)\
-[![Preview with GTK 4 - Main window](images/thumbs/gtk4.png?raw=true)](images/gtk4.png?raw=true)
-[![Preview with GTK 4 - Menu](images/thumbs/gtk4-menu.png?raw=true)](images/gtk4-menu.png?raw=true)
-[![Preview with GTK 4 - RTL - Main window](images/thumbs/gtk4-rtl.png?raw=true)](images/gtk4-rtl.png?raw=true)
-[![Preview with GTK 4 - RTL - Menu](images/thumbs/gtk4-rtl-menu.png?raw=true)](images/gtk4-rtl-menu.png?raw=true)
+[<img alt="Preview with GTK 4 - Main window" src="images/thumbs/gtk4.png?raw=true" width="200" />](images/gtk4.png?raw=true)
+[<img alt="Preview with GTK 4 - Menu" src="images/thumbs/gtk4-menu.png?raw=true" width="200" />](images/gtk4-menu.png?raw=true)
+[<img alt="Preview with GTK 4 - RTL - Main window" src="images/thumbs/gtk4-rtl.png?raw=true" width="200" />](images/gtk4-rtl.png?raw=true)
+[<img alt="Preview with GTK 4 - RTL - Menu" src="images/thumbs/gtk4-rtl-menu.png?raw=true" width="200" />](images/gtk4-rtl-menu.png?raw=true)
 
 Theme used for the screenshots is available [here](https://github.com/luigifab/human-theme).
 
@@ -40,7 +40,7 @@ Theme used for the screenshots is available [here](https://github.com/luigifab/h
 
 It require **GTK 2.24** or **GTK 3.0+** *(including 3.24)* or **GTK 4.0+** *(including 4.12)*, and *GLIB 2.28+*.
 
-#### Installation for Debian and Ubuntu
+#### Installation for Debian, Ubuntu, Trisquel, Linux Mint, MX Linux
 
 * `sudo apt install awf-gtk2 awf-gtk3 awf-gtk4`
 
@@ -52,19 +52,27 @@ It require **GTK 2.24** or **GTK 3.0+** *(including 3.24)* or **GTK 4.0+** *(inc
 
 * `sudo zypper install awf-gtk2 awf-gtk3 awf-gtk4`
 
+#### Installation for Mageia
+
+* `sudo urpmi awf-gtk2 awf-gtk3 awf-gtk4`
+
 #### Building from source
 
-* To compile the program with all major GTK versions available, run: `build.sh`
-* To compile the program and create DEB packages for Debian and Ubuntu, run: `debian[-gtkx]/deb.sh`
-* To compile the program and create RPM packages for Fedora, run: `fedora/rpm-gtkx.sh`
-* To compile the program and create RPM packages for openSUSE, run: `opensuse/rpm-gtkx.sh`
-* To compile the program and create ZST packages for Arch Linux, run: `archlinux/zst-gtkx.sh`
+* To compile the program with all major GTK versions available run: `build.sh`
+* To compile the program and create DEB packages for Debian run: `debian-gtkx/deb.sh`
+* To compile the program and create RPM packages for Fedora run: `fedora/rpm-gtkx.sh`
+* To compile the program and create RPM packages for openSUSE run: `opensuse/rpm-gtkx.sh`
+* To compile the program and create RPM packages for Mageia run: `mageia/rpm-gtkx.sh`
 
-#### Alternative installation for Debian and Ubuntu
+#### Alternative installation for Debian, Ubuntu, Trisquel, Linux Mint, MX Linux
 
 ```bash
 # PPA: https://launchpad.net/~luigifab/+archive/ubuntu/packages
 # with Debian 12+ you can use mantic+ instead of focal (https://unix.stackexchange.com/a/669008/364800)
+# for Trisquel you can use focal for nabia, jammy for aramo
+# for Linux Mint you can use focal for 20.x and 5, jammy for 21.x, noble for 22.x and 6
+# for MX Linux you can use focal for 19.x and 21.x, noble for 23.x
+
 sudo add-apt-repository ppa:luigifab/packages
 sudo apt update
 sudo apt install awf-gtk2 awf-gtk3 awf-gtk4
@@ -78,8 +86,7 @@ sudo wget -O /etc/apt/trusted.gpg.d/luigifab.gpg https://www.luigifab.fr/apt.gpg
 echo "deb http://ppa.launchpad.net/luigifab/packages/ubuntu focal main" | sudo tee -a /etc/apt/sources.list
 sudo apt update
 sudo apt install awf-gtk2 awf-gtk3 awf-gtk4
-```
-```bash
+
 # sha256sum /etc/apt/trusted.gpg.d/luigifab.gpg
 578c89a677048e38007462d543686b53587efba9f93814601169253c45ff9213
 # apt-key list
@@ -104,16 +111,18 @@ ls ~/.themes/yourtheme/gtk-3*/*.css | entr killall -s SIGHUP awf-gtk3
 [Arch Linux awf-gtk2.zst](https://aur.archlinux.org/packages/awf-gtk2)
 ; [Arch Linux awf-gtk3.zst](https://aur.archlinux.org/packages/awf-gtk3)
 ; [Arch Linux awf-gtk4.zst](https://aur.archlinux.org/packages/awf-gtk4)\
-[Debian awf-gtk3.deb](https://packages.debian.org/awf-gtk)
-; [Debian awf-gtk4.deb](https://packages.debian.org/awf-gtk)\
+[Debian awf-gtk3.deb,  awf-gtk4.deb](https://packages.debian.org/awf-gtk)\
 [Fedora awf-gtk2.rpm](https://src.fedoraproject.org/rpms/awf-gtk2)
 ; [Fedora awf-gtk3.rpm](https://src.fedoraproject.org/rpms/awf-gtk3)
 ; [Fedora awf-gtk4.rpm](https://src.fedoraproject.org/rpms/awf-gtk4)\
 [openSUSE awf-gtk2.rpm](https://software.opensuse.org/package/awf-gtk2)
 ; [openSUSE awf-gtk3.rpm](https://software.opensuse.org/package/awf-gtk3)
 ; [openSUSE awf-gtk4.rpm](https://software.opensuse.org/package/awf-gtk4)\
-[Ubuntu awf-gtk3.deb](https://packages.ubuntu.com/awf-gtk)
-; [Ubuntu awf-gtk4.deb](https://packages.ubuntu.com/awf-gtk)\
+[Mageia awf-gtk2.rpm](https://madb.mageia.org/package/show/name/awf-gtk2/arch/x86_64)
+; [Mageia awf-gtk3.rpm](https://madb.mageia.org/package/show/name/awf-gtk3/arch/x86_64)
+; [Mageia awf-gtk4.rpm](https://madb.mageia.org/package/show/name/awf-gtk4/arch/x86_64)\
+[Trisquel awf-gtk3.deb, awf-gtk4.deb](https://packages.trisquel.org/awf-gtk)\
+[Ubuntu awf-gtk3.deb, awf-gtk4.deb](https://packages.ubuntu.com/awf-gtk)\
 [Ubuntu PPA](https://launchpad.net/~luigifab/+archive/ubuntu/packages)
 
 This program is provided under the terms of the **GNU GPLv3+** license.\
@@ -121,7 +130,7 @@ If you like, take some of your time to improve the translations, go to https://b
 
 ## Packages in official distros repositories
 
-[![Packages status](https://repology.org/badge/vertical-allrepos/awf-widget-factory.svg?header=awf-gtk&minversion=2.0.0)](https://repology.org/project/awf-widget-factory/versions)
+[![Packages status](https://repology.org/badge/vertical-allrepos/awf-widget-factory.svg?header=awf-gtk&minversion=2.0.0&exclude_unsupported=1&columns=3)](https://repology.org/project/awf-widget-factory/versions)
 
 ## Credits
 

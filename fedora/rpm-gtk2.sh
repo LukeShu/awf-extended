@@ -1,5 +1,5 @@
 #!/bin/bash
-# Fedora: sudo dnf install rpmdevtools rpm-sign autoconf automake gtk2-devel desktop-file-utils aspell-fr enchant2-aspell
+# Fedora: sudo dnf install rpmdevtools rpmlint rpm-sign autoconf automake gtk2-devel desktop-file-utils aspell-fr enchant2-aspell
 # Fedora: configure: error: C compiler cannot create executables? remove and reinstall glibc-devel gcc
 
 cd "$(dirname "$0")"
@@ -20,7 +20,7 @@ else
 	rm -rf /tmp/$temp/*/builder/
 
 	mv /tmp/$temp builder/
-	cp /usr/share/licenses/*-firmware/GPL-3 builder/$temp/LICENSE # * = linux
+	cp /usr/share/common-licenses/GPL-3 builder/$temp/LICENSE
 
 	cd builder/
 	tar czf $temp.tar.gz $temp

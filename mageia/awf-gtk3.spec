@@ -1,9 +1,10 @@
 Name:          awf-gtk3
 Version:       2.8.0
-Release:       1%{?dist}
+Release:       %mkrel 1
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
 License:       GPLv3+
+Group:         Development/Basic
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
@@ -14,7 +15,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: gcc
 BuildRequires: gettext
 BuildRequires: gtk3-devel
-Requires:      gtk3
+Requires:      gtk+3
 Requires:      hicolor-icon-theme
 
 %description %{expand:
@@ -76,25 +77,4 @@ done
 
 %changelog
 * Fri Feb 02 2024 Fabrice Creuzot <code@luigifab.fr> - 2.8.0-1
-- New upstream release
-
-* Fri Jun 16 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-2
-- Package spec update
-
-* Tue Jun 06 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-1
-- New upstream release
-
-* Thu Sep 09 2021 Fabrice Creuzot <code@luigifab.fr> - 2.6.0-1
-- New upstream release
-
-* Wed Jul 07 2021 Fabrice Creuzot <code@luigifab.fr> - 2.5.0-1
-- New upstream release
-
-* Wed May 05 2021 Fabrice Creuzot <code@luigifab.fr> - 2.4.0-1
-- New upstream release
-
-* Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- New upstream release
-
-* Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
-- Initial Fedora package release (Closes: rhbz#1893323)
+- Initial Mageia package release (Closes: mbz#...)

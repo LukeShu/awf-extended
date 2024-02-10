@@ -47,9 +47,9 @@ for serie in experimental noble mantic jammy focal bionic xenial trusty; do
 	dh_make -s -y -f ../awf-extended-$version.tar.gz -p awf-$gtk
 
 	rm -f debian/*ex debian/*EX debian/README* debian/*doc*
-	mkdir debian/upstream
 	cp debian-$gtk/* debian/
-	rm debian/deb.sh debian/*.install
+	cp debian-gtk/*.1 debian-gtk/awf-$gtk.manpages debian-gtk/metadata debian-gtk/watch debian/
+	rm debian/deb.sh
 	mv debian/metadata debian/upstream/metadata
 
 
@@ -58,7 +58,10 @@ for serie in experimental noble mantic jammy focal bionic xenial trusty; do
 		dpkg-buildpackage -us -uc
 	else
 		# debhelper: experimental:13 focal:12 bionic:9 xenial:9 trusty:9
-		if [ $serie = "focal" ]; then
+		if [ $serie = "focal" ] || [ $serie = "mx19" ] || [ $serie = "mx21" ]; then
+			if [ $serie = "mx19" ] || [ $serie = "mx21" ]; then
+				mv debian/control.mx debian/control
+			fi
 			sed -i 's/debhelper-compat (= 13)/debhelper-compat (= 12)/g' debian/control
 		fi
 		if [ $serie = "bionic" ]; then
@@ -78,8 +81,15 @@ for serie in experimental noble mantic jammy focal bionic xenial trusty; do
 			sed -i ':a;N;$!ba;s/Rules-Requires-Root: no\n//g' debian/control
 			echo 9 > debian/compat
 		fi
-		sed -i 's/experimental/'$serie'/g' debian/changelog
-		sed -i 's/-1) /-1+'$serie') /' debian/changelog
+		if [ $serie = "mx23" ] || [ $serie = "mx21" ] || [ $serie = "mx19" ]; then
+			# MX Linux only
+			mv debian/changelog.mx debian/changelog
+			sed -i 's/-1) /-1~'$serie'+1) /' debian/changelog
+		else
+			rm -f debian/*.mx
+			sed -i 's/experimental/'$serie'/g' debian/changelog
+			sed -i 's/-1) /-1+'$serie') /' debian/changelog
+		fi
 		dpkg-buildpackage -us -uc -ui -d -S
 	fi
 	echo "=========================== debsign =="
@@ -87,12 +97,12 @@ for serie in experimental noble mantic jammy focal bionic xenial trusty; do
 
 	if [ $serie = "experimental" ]; then
 		# Debian only
-		debsign awf-${gtk}_$version-*.changes
+		debsign awf-${gtk}_$version*.changes
 		echo "=========================== lintian =="
-		lintian -EviIL +pedantic awf-${gtk}_$version-*.deb
+		lintian -EviIL +pedantic awf-${gtk}*$version*.deb
 	else
 		# Ubuntu only
-		debsign awf-${gtk}_$version*+$serie*source.changes
+		debsign awf-${gtk}*$version*$serie*source.changes
 	fi
 	echo "==========================="
 	cd ..

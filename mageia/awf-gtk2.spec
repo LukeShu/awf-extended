@@ -1,9 +1,10 @@
-Name:          awf-gtk3
+Name:          awf-gtk2
 Version:       2.8.0
-Release:       1%{?dist}
+Release:       %mkrel 1
 Summary:       Theme preview application for GTK
 Summary(fr):   Application d'aperçu de thème pour GTK
 License:       GPLv3+
+Group:         Development/Basic
 URL:           https://github.com/luigifab/awf-extended
 Source0:       %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
@@ -13,8 +14,8 @@ BuildRequires: automake
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
 BuildRequires: gettext
-BuildRequires: gtk3-devel
-Requires:      gtk3
+BuildRequires: gtk2-devel
+Requires:      gtk2
 Requires:      hicolor-icon-theme
 
 %description %{expand:
@@ -22,19 +23,19 @@ A widget factory is a theme preview application for GTK. It displays the
 various widget types provided by GTK in a single window allowing to see
 the visual effect of the applied theme.
 
-This package provides the GTK 3 version.}
+This package provides the GTK 2 version.}
 
 %description -l fr %{expand:
 La fabrique à widgets est une application d'aperçu de thème pour GTK. Elle
 affiche les différents types de widgets fournis par GTK dans une seule
 fenêtre permettant de voir l'effet visuel du thème appliqué.
 
-Ce paquet fournit la version GTK 3.}
+Ce paquet fournit la version GTK 2.}
 
 
 %prep
 %setup -q -n awf-extended-%{version}
-sed -i 's/ -eq 2/ -eq -1/g' configure.ac
+sed -i 's/ -eq 3/ -eq -1/g' configure.ac
 sed -i 's/ -eq 4/ -eq -1/g' configure.ac
 touch {NEWS,AUTHORS,README,ChangeLog}
 mv LICENSE COPYING
@@ -76,25 +77,4 @@ done
 
 %changelog
 * Fri Feb 02 2024 Fabrice Creuzot <code@luigifab.fr> - 2.8.0-1
-- New upstream release
-
-* Fri Jun 16 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-2
-- Package spec update
-
-* Tue Jun 06 2023 Fabrice Creuzot <code@luigifab.fr> - 2.7.0-1
-- New upstream release
-
-* Thu Sep 09 2021 Fabrice Creuzot <code@luigifab.fr> - 2.6.0-1
-- New upstream release
-
-* Wed Jul 07 2021 Fabrice Creuzot <code@luigifab.fr> - 2.5.0-1
-- New upstream release
-
-* Wed May 05 2021 Fabrice Creuzot <code@luigifab.fr> - 2.4.0-1
-- New upstream release
-
-* Sun Apr 04 2021 Fabrice Creuzot <code@luigifab.fr> - 2.3.0-1
-- New upstream release
-
-* Wed Nov 11 2020 Fabrice Creuzot <code@luigifab.fr> - 2.2.0-1
-- Initial Fedora package release (Closes: rhbz#1893323)
+- Initial Mageia package release (Closes: mbz#...)

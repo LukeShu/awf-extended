@@ -46,21 +46,20 @@ autoreconf -fi
 
 %install
 %make_install
-mkdir -p %{buildroot}%{_datadir}/applications/
+install -dm 755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ applications/%{name}.desktop
 
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor/
+install -dm 755 %{buildroot}%{_datadir}/icons/hicolor/
 for file in icons/*/*/awf.png; do mv $file ${file/\/awf.png/\/%{name}.png}; done
 for file in icons/*/*/awf.svg; do mv $file ${file/\/awf.svg/\/%{name}.svg}; done
 cp -a icons/* %{buildroot}%{_datadir}/icons/hicolor/
 
-mkdir -p %{buildroot}%{_mandir}/man1/ %{buildroot}%{_mandir}/fr/man1/
-install -pm 644 debian/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-install -pm 644 debian/%{name}.fr.1 %{buildroot}%{_mandir}/fr/man1/%{name}.1
+install -Dpm 644 debian-gtk/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -Dpm 644 debian-gtk/%{name}.fr.1 %{buildroot}%{_mandir}/fr/man1/%{name}.1
 
 for file in src/po/*.po; do
   code=$(basename "$file" .po)
-  mkdir -p %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/
+  install -dm 755 %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/
   msgfmt src/po/${code}.po -o %{buildroot}%{_datadir}/locale/${code}/LC_MESSAGES/%{name}.mo
 done
 %find_lang %{name} --with-man
