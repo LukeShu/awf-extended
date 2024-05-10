@@ -1,7 +1,7 @@
 AC_INIT([A widget factory], [2.8.0])
 AC_CONFIG_SRCDIR([src/awf.c])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 
 AC_PROG_CC
 AM_PROG_CC_C_O
